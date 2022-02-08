@@ -50,7 +50,7 @@ Para o presente trabalho, foram desenvolvidos pequenos módulos de DER para que,
 
 ## DER de Bruvic (Diagrama geral) 
 
-![DER geral](./der_bruvic_v2.svg)
+![DER geral](./der_bruvic_v3.svg)
 
 <br/>
 
