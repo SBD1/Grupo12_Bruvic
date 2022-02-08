@@ -10,25 +10,36 @@ Para o presente trabalho, foram desenvolvidos pequenos módulos de DER para que,
 
 ### DER do habilidades
 
+![DER habilidades](./der_habilidade_v2.png)
 
+> Autor: Gabriel Davi
 
 ### DER de itens
 
+![DER itens](./der_item_v2.png)
 
+> Autor: Leonardo Gomes
 
 ### DER de mapa
 
+![DER mapa](./der_mapa_v2.3.png)
 
+> Autor: Renato Britto
 
 ### DER de personagens
 
+![DER personagens](./der_personagens_v2.png)
 
+> Autor: Hugo Sobral
 
 ### DER de itens de sobrevivência
 
+![DER itens sobrevivência](./itens_sobrevivencia_v1.png)
 
+> Autora: Shayanne Alcântara
 
 ## DER de Bruvic (Diagrama geral) 
 
+![DER geral](./der_bruvic_v2.svg)
 
 ### Especificidades do diagrama em texto
