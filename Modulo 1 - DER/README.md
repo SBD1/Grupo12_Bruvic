@@ -70,4 +70,4 @@ As especificações de raça de personagem fornecem bônus de atributos para o p
 
 
 ### Observações
-Como a visualização do diagrama pode estar comprometida durante a leitura deste documento, sugere-se a visualização mais detalhada por meio da imagem hospedada no repositório do GitHub. A imagem pode ser acessada [por este link](https://github.com/SBD1/Grupo12_Bruvic/blob/d50ae66424e7385410561e0fb8d88e2321a781c4/Modulo%201%20-%20DER/der_bruvic_v2.png).
+Como a visualização do diagrama pode estar comprometida durante a leitura deste documento, sugere-se a visualização mais detalhada por meio da imagem hospedada no repositório do GitHub. A imagem pode ser acessada [por este link](https://github.com/SBD1/Grupo12_Bruvic/blob/94c6dd57614fa5a46df992d2d54da1b227f64c7d/Modulo%201%20-%20DER/der_bruvic_v3.png).
