@@ -22,93 +22,123 @@ O Mapeamento desenvolvido se consiste no modelo relacional criado para um jogo M
 
 #### Mapa
 Relação que representa um mapa do jogo. 
+<br/>
 
 #### Bloco
 Relação que representa um bloco do jogo.
+<br/>
 
 #### Gatilho
 Relação que representa blocos com interação.
+<br/>
 
 #### NPC
 Relação que representa personagens não jogáveis.
+<br/>
 
 #### Negociante
 Relação que representa uma especialização de tipo de NPC.
+<br/>
 
 #### Item
 Relação que representa um item do jogo.
+<br/>
 
 #### Bugiganga
 Relação que representa uma especialização de tipo de Item.
+<br/>
 
 #### Poção
 Relação que representa uma especialização de tipo de Item.
+<br/>
 
 #### Equipamento
 Relação que representa uma especialização de tipo de Item.
+<br/>
 
 #### Venda
 Relação que representa uma transação de compra e venda de itens no jogo.
+<br/>
 
 #### Mochila
 Relação que representa uma mochila do jogo, isto é, o equipamento responsável pela carga de outros itens.
+<br/>
 
 #### Habilidade
 Relação que representa uma ação ativa do personagem no jogo.
+<br/>
 
 #### Ataque
 Relação que representa uma especialização de tipo de Habilidade.
+<br/>
 
 #### Cura
 Relação que representa uma especialização de tipo de Habilidade.
+<br/>
 
 #### Truque
 Relação que representa uma especialização de tipo de Habilidade.
+<br/>
 
 #### Magia
 Relação que representa uma especialização de tipo de Habilidade.
+<br/>
 
 #### Antecedente
 Relação que representa o antecedente do personagem, isto é, uma definição de história de background do personagem.
+<br/>
 
 #### Personagem_Antecedente
 Relação responsável por conectar instâncias de Antecedente a instâncias de Personagem.
+<br/>
 
 #### Personagem
 Relação que representa um personagem jogável do jogo.
+<br/>
 
 #### Humano
 Relação que representa uma especialização de raça de Personagem.
+<br/>
 
 #### Anão
 Relação que representa uma especialização de raça de Personagem.
+<br/>
 
 #### Meio_Elfo
 Relação que representa uma especialização de raça de Personagem.
+<br/>
 
 #### Draconato
 Relação que representa uma especialização de raça de Personagem.
+<br/>
 
 #### Guerreiro
 Relação que representa uma especialização de classe de Personagem.
+<br/>
 
 #### Mago
 Relação que representa uma especialização de classe de Personagem.
+<br/>
 
 #### Mago_Magia
 Relação responsável por conectar instâncias de Mago a instâncias de Magia.
+<br/>
 
 #### Clérigo
 Relação que representa uma especialização de classe de Personagem.
+<br/>
 
 #### Clérigo_Truque
 Relação responsável por conectar instâncias de Clérigo a instâncias de Truque.
+<br/>
 
 #### Clérigo_Cura
 Relação responsável por conectar instâncias de Clérigo a instâncias de Cura.
+<br/>
 
 #### Definição_Personagem
 Relação responsável por conectar instãncias de Personagem a instãncias de classe e raça.
+<br/>
 
 ---
 
@@ -118,6 +148,7 @@ Relação responsável por conectar instãncias de Personagem a instãncias de c
 **ID** - Atributo identificador da relação.   
 **Largura** - Largura, em blocos, do mapa.   
 **Altura** - Altura, em blocos, do mapa   
+<br/>
 
 #### Bloco
 **Eixo_X** - Posição no eixo horizontal. Chave composta.   
@@ -126,12 +157,14 @@ Relação responsável por conectar instãncias de Personagem a instãncias de c
 **Interação** - Especificação da possível interação com o bloco.   
 **Tipo*** - Especificação do tipo do bloco.   
 **Spawn_Item** - Atributo que define o surgimento ou não de itens no bloco.   
+<br/>
 
 #### Gatilho
 **Eixo_X** - Posição no eixo horizontal. Chave composta.   
 **Eixo_Y** - Posição no eixo vertical. Chave composta.   
 **Mapa** - Identificador para a relação de Mapa.   
 **Ação** - Especificação de ação de reação do bloco gatilho.   
+<br/>
 
 #### NPC
 **ID** - Atributo identificador da relação.   
@@ -140,9 +173,11 @@ Relação responsável por conectar instãncias de Personagem a instãncias de c
 **Tipo** - Especificação para o tipo de NPC.
 **Vida** - Pontos de vida do NPC.   
 **Dano** - Quantidade de dano fornecida para cada ataque.   
+<br/>
 
 #### Negociante
 **NPC** - Identificador para a relação de NPC. Chave primária.
+<br/>
 
 #### Item
 **ID** - Atributo identificador da relação.   
@@ -152,16 +187,19 @@ Relação responsável por conectar instãncias de Personagem a instãncias de c
 **Peso** - Peso do item.   
 **Tipo** - Especificação do tipo do item.   
 **Mochila** - Identificador para a relação de Mochila.   
+<br/>
 
 #### Bugiganga
 **Item** - Identificador para a relação de Item. v   
 **Descrição** - Descrição da bugiganga.   
 **Função** - Função da bugiganga.   
 **É_Item_História** - Atributo de controle para informar a importância da bugiganga para a história do jogo.   
+<br/>
 
 #### Poção
 **Item** - Identificador para a relação de Item. Chave primária.   
 **Recuperação** - Quantidade de pontos de vida recuperados.   
+<br/>
 
 #### Equipamento
 **Item** - Identificador para a relação de Item. Chave primária.   
@@ -171,17 +209,20 @@ Relação responsável por conectar instãncias de Personagem a instãncias de c
 **Alcance** - O alcance da arma.   
 **É_Armadura** - Atributo de controle para informar o tipo do equipamento.   
 **É_Arma** - Atributo de controle para informar o tipo do equipamento.   
+<br/>
 
 #### Venda
 **Negociante** - Identificador para a relação de Negociante. Chave composta.   
 **Item** - Identificador para a relação de Item. Chave composta.    
 **Personagem** - Identificador para a relação de Personagem. Chave composta.   
 **Valor** - Valor do câmbio da venda realizada.
+<br/>
 
 #### Mochila
 **ID** - Atributo identificador da relação.   
-**Capacidade** - Gramatura máxima de que cabe na mochila.
+**Capacidade** - Gramatura máxima de que cabe na mochila.   
 **Personagem** - Identificador para a relação de Personagem.   
+<br/>
 
 #### Habilidade
 **ID** - Atributo identificador da relação.   
@@ -189,22 +230,27 @@ Relação responsável por conectar instãncias de Personagem a instãncias de c
 **Nome** - Nome da habilidade.   
 **Descrição** - Descrição da habilidade.   
 **Nível** - Nível da habilidade.   
+<br/>
 
 #### Ataque
 **Habilidade** - Identificador para a relação de Habilidade. Chave primária.  
 **Dano** - Dano causado pelo ataque.   
+<br/>
 
 #### Cura
 **Habilidade** - Identificador para a relação de Habilidade. Chave primária.   
 **Recuperação** - Quantidade de pontos de vida recuperados.   
+<br/>
 
 #### Truque
 **Habilidade** - Identificador para a relação de Habilidade. Chave primária.  
 **Stun** - Quantidade de turnos em que o receptor do truque ficará incapacitado.   
+<br/>
 
 #### Magia
 **Habilidade** - Identificador para a relação de Habilidade. Chave primária.  
 **Modificador** - Buffer ou debuffer temporário de alguma característica.   
+<br/>
 
 #### Antecedente
 **Nome** - Nome do antecedente. Chave primária.   
@@ -214,14 +260,16 @@ Relação responsável por conectar instãncias de Personagem a instãncias de c
 **Item_4** - Quarto item fornecido pelo antecedente.   
 **Descrição** - Descrição do antecedente.   
 **Dinheiro** - Dinheiro fornecido pelo antecedente.   
+<br/>
 
 #### Personagem_Antecedente
 **Antecedente** - Identificador para a relação de Antecedente. Chave composta.   
 **Personagem** - Identificador para a relação de Personagem. Chave composta.   
+<br/>
 
 #### Personagem
 **ID** - Atributo identificador da relação.   
-**Vida** - Pontos de vida do personagem.
+**Vida** - Pontos de vida do personagem.   
 **Experiência** - Quantidade atual de experiência do personagem.   
 **Nível** - Nível do personagem.   
 **Nome** - Nome do personagem.   
@@ -232,6 +280,7 @@ Relação responsável por conectar instãncias de Personagem a instãncias de c
 **Sabedoria** - Pontos de sabedoria do personagem.   
 **Inteligência** - Pontos de inteligência do personagem.   
 **Classe de Armadura** - Quantidade de armadura do personagem.
+<br/>
 
 #### Humano
 **Personagem** - Identificador para a relação de Personagem. Chave primária.   
@@ -241,50 +290,60 @@ Relação responsável por conectar instãncias de Personagem a instãncias de c
 **Bônus_Carisma** - Bônus fornecido para o campo de carisma.  
 **Bônus_Sabedoria** - Bônus fornecido para o campo de sabedoria.  
 **Bônus_Inteligência** - Bônus fornecido para o campo de inteligência.  
-
+<br/>
 
 #### Anão
 **Personagem** - Identificador para a relação de Personagem. Chave primária.   
 **Bônus_Força** - Bônus fornecido para o campo de força.  
 **Bônus_Constituição** - Bônus fornecido para o campo de constituição.  
+<br/>
 
 #### Meio_Elfo
 **Personagem** - Identificador para a relação de Personagem. Chave primária.   
 **Bônus_Destreza** - Bônus fornecido para o campo de destreza.  
 **Bônus_Sabedoria** - Bônus fornecido para o campo de sabedoria.  
+<br/>
 
 #### Draconato
 **Personagem** - Identificador para a relação de Personagem. Chave primária.   
 **Bônus_Carisma** - Bônus fornecido para o campo de carisma.  
 **Bônus_Inteligência** - Bônus fornecido para o campo de inteligência.  
+<br/>
 
 #### Guerreiro
 **Personagem** - Identificador para a relação de Personagem. Chave primária.   
 **Bônus_CA** - Bônus fornecido para a classe de armadura.   
 **Bônus_Ataque** - Bônus de dano fornecido ao ataque.  
+<br/>
 
 #### Mago
 **Personagem** - Identificador para a relação de Personagem. Chave primária.   
+<br/>
 
 #### Mago_Magia
 **Mago** - Identificador para a relação de Mago. Chave composta.   
 **Magia** - Identificador para a relação de Magia. Chave composta. 
+<br/>
 
 #### Clérigo
 **Personagem** - Identificador para a relação de Personagem. Chave primária.  
+<br/>
 
 #### Clérigo_Truque
 **Clérigo** - Identificador para a relação de Clérigo. Chave composta.    
 **Truque** - Identificador para a relação de Truque. Chave composta.   
+<br/>
 
 #### Clérigo_Cura
 **Clérigo** - Identificador para a relação de Clérigo. Chave composta.    
 **Cura** - Identificador para a relação de Cura. Chave composta.   
+<br/>
 
 #### Definição_Personagem
 **Personagem** - Identificador para a relação de Personagem. Chave primária.      
-**Classe** - Definição da classe do personagem.
-**Raça** - Definição da raça do personagem.
+**Classe** - Definição da classe do personagem.   
+**Raça** - Definição da raça do personagem.   
+<br/>
 
 ---
 
