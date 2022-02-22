@@ -21,123 +21,123 @@ O Mapeamento desenvolvido se consiste no modelo relacional criado para um jogo M
 ### Definição das relações
 
 #### Mapa
-Relação que representa um mapa do jogo. 
+Relação que representa um mapa do jogo.   
 <br/>
 
 #### Bloco
-Relação que representa um bloco do jogo.
+Relação que representa um bloco do jogo.   
 <br/>
 
 #### Gatilho
-Relação que representa blocos com interação.
+Relação que representa blocos com interação.   
 <br/>
 
-#### NPC
-Relação que representa personagens não jogáveis.
+#### NPC 
+Relação que representa personagens não jogáveis.   
 <br/>
 
 #### Negociante
-Relação que representa uma especialização de tipo de NPC.
+Relação que representa uma especialização de tipo de NPC.   
 <br/>
 
 #### Item
-Relação que representa um item do jogo.
+Relação que representa um item do jogo.   
 <br/>
 
 #### Bugiganga
-Relação que representa uma especialização de tipo de Item.
+Relação que representa uma especialização de tipo de Item.   
 <br/>
 
 #### Poção
-Relação que representa uma especialização de tipo de Item.
+Relação que representa uma especialização de tipo de Item.   
 <br/>
 
 #### Equipamento
-Relação que representa uma especialização de tipo de Item.
+Relação que representa uma especialização de tipo de Item.   
 <br/>
 
 #### Venda
-Relação que representa uma transação de compra e venda de itens no jogo.
+Relação que representa uma transação de compra e venda de itens no jogo.   
 <br/>
 
 #### Mochila
-Relação que representa uma mochila do jogo, isto é, o equipamento responsável pela carga de outros itens.
+Relação que representa uma mochila do jogo, isto é, o equipamento responsável pela carga de outros itens.   
 <br/>
 
 #### Habilidade
-Relação que representa uma ação ativa do personagem no jogo.
+Relação que representa uma ação ativa do personagem no jogo.   
 <br/>
 
-#### Ataque
-Relação que representa uma especialização de tipo de Habilidade.
+#### Ataque 
+Relação que representa uma especialização de tipo de Habilidade.   
 <br/>
 
 #### Cura
-Relação que representa uma especialização de tipo de Habilidade.
+Relação que representa uma especialização de tipo de Habilidade.   
 <br/>
 
 #### Truque
-Relação que representa uma especialização de tipo de Habilidade.
+Relação que representa uma especialização de tipo de Habilidade.   
 <br/>
 
 #### Magia
-Relação que representa uma especialização de tipo de Habilidade.
+Relação que representa uma especialização de tipo de Habilidade.   
 <br/>
 
 #### Antecedente
-Relação que representa o antecedente do personagem, isto é, uma definição de história de background do personagem.
+Relação que representa o antecedente do personagem, isto é, uma definição de história de background do personagem.   
 <br/>
 
 #### Personagem_Antecedente
-Relação responsável por conectar instâncias de Antecedente a instâncias de Personagem.
+Relação responsável por conectar instâncias de Antecedente a instâncias de Personagem.   
 <br/>
 
 #### Personagem
-Relação que representa um personagem jogável do jogo.
+Relação que representa um personagem jogável do jogo.   
 <br/>
 
 #### Humano
-Relação que representa uma especialização de raça de Personagem.
+Relação que representa uma especialização de raça de Personagem.   
 <br/>
 
 #### Anão
-Relação que representa uma especialização de raça de Personagem.
+Relação que representa uma especialização de raça de Personagem.   
 <br/>
 
 #### Meio_Elfo
-Relação que representa uma especialização de raça de Personagem.
+Relação que representa uma especialização de raça de Personagem.   
 <br/>
 
 #### Draconato
-Relação que representa uma especialização de raça de Personagem.
+Relação que representa uma especialização de raça de Personagem.   
 <br/>
 
 #### Guerreiro
-Relação que representa uma especialização de classe de Personagem.
+Relação que representa uma especialização de classe de Personagem.   
 <br/>
 
 #### Mago
-Relação que representa uma especialização de classe de Personagem.
+Relação que representa uma especialização de classe de Personagem.   
 <br/>
 
 #### Mago_Magia
-Relação responsável por conectar instâncias de Mago a instâncias de Magia.
+Relação responsável por conectar instâncias de Mago a instâncias de Magia.   
 <br/>
 
 #### Clérigo
-Relação que representa uma especialização de classe de Personagem.
+Relação que representa uma especialização de classe de Personagem.   
 <br/>
 
 #### Clérigo_Truque
-Relação responsável por conectar instâncias de Clérigo a instâncias de Truque.
+Relação responsável por conectar instâncias de Clérigo a instâncias de Truque.   
 <br/>
 
 #### Clérigo_Cura
-Relação responsável por conectar instâncias de Clérigo a instâncias de Cura.
+Relação responsável por conectar instâncias de Clérigo a instâncias de Cura.   
 <br/>
 
 #### Definição_Personagem
-Relação responsável por conectar instãncias de Personagem a instãncias de classe e raça.
+Relação responsável por conectar instãncias de Personagem a instãncias de classe e raça.    
 <br/>
 
 ---
@@ -176,7 +176,7 @@ Relação responsável por conectar instãncias de Personagem a instãncias de c
 <br/>
 
 #### Negociante
-**NPC** - Identificador para a relação de NPC. Chave primária.
+**NPC** - Identificador para a relação de NPC. Chave primária.   
 <br/>
 
 #### Item
@@ -215,7 +215,7 @@ Relação responsável por conectar instãncias de Personagem a instãncias de c
 **Negociante** - Identificador para a relação de Negociante. Chave composta.   
 **Item** - Identificador para a relação de Item. Chave composta.    
 **Personagem** - Identificador para a relação de Personagem. Chave composta.   
-**Valor** - Valor do câmbio da venda realizada.
+**Valor** - Valor do câmbio da venda realizada.   
 <br/>
 
 #### Mochila
@@ -279,7 +279,7 @@ Relação responsável por conectar instãncias de Personagem a instãncias de c
 **Carisma** - Pontos de carisma do personagem.   
 **Sabedoria** - Pontos de sabedoria do personagem.   
 **Inteligência** - Pontos de inteligência do personagem.   
-**Classe de Armadura** - Quantidade de armadura do personagem.
+**Classe de Armadura** - Quantidade de armadura do personagem.   
 <br/>
 
 #### Humano
@@ -322,7 +322,7 @@ Relação responsável por conectar instãncias de Personagem a instãncias de c
 
 #### Mago_Magia
 **Mago** - Identificador para a relação de Mago. Chave composta.   
-**Magia** - Identificador para a relação de Magia. Chave composta. 
+**Magia** - Identificador para a relação de Magia. Chave composta.   
 <br/>
 
 #### Clérigo
