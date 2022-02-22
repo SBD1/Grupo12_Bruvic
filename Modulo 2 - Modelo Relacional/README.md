@@ -348,3 +348,204 @@ Relação responsável por conectar instãncias de Personagem a instãncias de c
 ---
 
 ### Definição de formato de dados
+
+#### Mapa
+**ID** - Inteiro positivo.   
+**Largura** - Inteiro dentro do intervalo [1, 512].   
+**Altura** - Inteiro dentro do intervalo [1, 512].   
+<br/>
+
+#### Bloco
+**Eixo_X** - Inteiro dentro do intervalo [-256, 255].   
+**Eixo_Y** - Inteiro dentro do intervalo [-256, 255].   
+**Mapa** - Inteiro positivo   
+**Interação** - Atributo de texto.   
+**Tipo*** - Atributo de texto.       
+**Spawn_Item** - Atributo booleano.   
+<br/>
+
+#### Gatilho
+**Eixo_X** - Inteiro dentro do intervalo [-256, 255]..   
+**Eixo_Y** - Inteiro dentro do intervalo [-256, 255]..   
+**Mapa** - Inteiro positivo.   
+**Ação** - Atributo de texto.   
+<br/>
+
+#### NPC
+**ID** - Inteiro positibo.   
+**Eixo_X** - Inteiro dentro do intervalo [-256, 255].   
+**Eixo_Y** - Inteiro dentro do intervalo [-256, 255].   
+**Tipo** - Atributo de texto.
+**Vida** - Inteiro positivo e maior que 10.   
+**Dano** - Inteiro positivo e maior que 5.   
+<br/>
+
+#### Negociante
+**NPC** - Inteiro positivo. 
+<br/>
+
+#### Item
+**ID** - Inteiro positivo.   
+**Negociante** - Inteiro positivo.   
+**Bloco** - Tupla de inteiros dentro do intervalo [-256, 255].   
+**Nome** - Atributo de texto.   
+**Peso** - Atributo de texto.   
+**Tipo** - Atributo de texto.   
+**Mochila** - Inteiro positivo.   
+<br/>
+
+#### Bugiganga
+**Item** - Inteiro positivo.   
+**Descrição** - Atributo de texto.   
+**Função** - Atributo de texto.   
+**É_Item_História** - Atributo booleano.   
+<br/>
+
+#### Poção
+**Item** - Inteiro positivo.   
+**Recuperação** - Inteiro positivo.   
+<br/>
+
+#### Equipamento
+**Item** - Inteiro positivo.   
+**Durabilidade** - Inteiro positivo.   
+**Classe de Armadura** - Inteiro positivo.   
+**Dano** - Inteiro positivo.   
+**Alcance** - Inteiro positivo.   
+**É_Armadura** - Atributo booleano.   
+**É_Arma** - Atributo booleano.   
+<br/>
+
+#### Venda
+**Negociante** - Inteiro positivo.   
+**Item** - Inteiro positivo.    
+**Personagem** - Inteiro positivo.   
+**Valor** - Inteiro positivo.   
+<br/>
+
+#### Mochila
+**ID** - Inteiro positivo.   
+**Capacidade** - Ponto flutuante positivo.   
+**Personagem** - Inteiro positivo.   
+<br/>
+
+#### Habilidade
+**ID** - Inteiro positivo.   
+**Tipo** - Atributo de texto.   
+**Nome** - Atributo de texto.   
+**Descrição** - Atributo de texto.   
+**Nível** - Inteiro Positivo.   
+<br/>
+
+#### Ataque
+**Habilidade** - Inteiro positivo.     
+**Dano** - Inteiro positivo.   
+<br/>
+
+#### Cura
+**Habilidade** - Inteiro positivo.   
+**Recuperação** - Inteiro positivo.   
+<br/>
+
+#### Truque
+**Habilidade** - Inteiro positivo.  
+**Stun** - Inteiro positivo.   
+<br/>
+
+#### Magia
+**Habilidade** - Inteiro positivo.  
+**Modificador** - Inteiro positivo.   
+<br/>
+
+#### Antecedente
+**Nome** - Atributo de texto.   
+**Item_1** - Inteiro positivo.   
+**Item_2** - Inteiro positivo.   
+**Item_3** - Inteiro positivo.   
+**Item_4** - Inteiro positivo.   
+**Descrição** - Atributo de texto.   
+**Dinheiro** - Inteiro positivo.   
+<br/>
+
+#### Personagem_Antecedente
+**Antecedente** - Atributo de texto.   
+**Personagem** - Inteiro positivo.   
+<br/>
+
+#### Personagem
+**ID** - Inteiro positivo.   
+**Vida** - Inteiro positivo.   
+**Experiência** - Inteiro positivo.   
+**Nível** - Inteiro positivo..   
+**Nome** - Atributo de texto.   
+**Destreza** - Inteiro positivo.   
+**Força** - Inteiro positivo.   
+**Constituição** - Inteiro positivo.   
+**Carisma** - Inteiro positivo.   
+**Sabedoria** - Inteiro positivo.   
+**Inteligência** - Inteiro positivo.   
+**Classe de Armadura** - Inteiro positivo.   
+<br/>
+
+#### Humano
+**Personagem** - Inteiro positivo.   
+**Bônus_Destreza** - Inteiro positivo.  
+**Bônus_Força** - Inteiro positivo.  
+**Bônus_Constituição** - Inteiro positivo.  
+**Bônus_Carisma** - Inteiro positivo.  
+**Bônus_Sabedoria** - Inteiro positivo.  
+**Bônus_Inteligência** - Inteiro positivo.  
+<br/>
+
+#### Anão
+**Personagem** - Inteiro positivo.   
+**Bônus_Força** - Inteiro positivo.  
+**Bônus_Constituição** - Inteiro positivo.  
+<br/>
+
+#### Meio_Elfo
+**Personagem** - Inteiro positivo.   
+**Bônus_Destreza** - Inteiro positivo.  
+**Bônus_Sabedoria** - Inteiro positivo.  
+<br/>
+
+#### Draconato
+**Personagem** - Inteiro positivo.   
+**Bônus_Carisma** - Inteiro positivo.  
+**Bônus_Inteligência** - Inteiro positivo.  
+<br/>
+
+#### Guerreiro
+**Personagem** - Inteiro positivo.   
+**Bônus_CA** - Inteiro positivo.   
+**Bônus_Ataque** - Inteiro positivo.  
+<br/>
+
+#### Mago
+**Personagem** - Inteiro positivo.   
+<br/>
+
+#### Mago_Magia
+**Mago** - Inteiro positivo.   
+**Magia** - Inteiro positivo.   
+<br/>
+
+#### Clérigo
+**Personagem** - Inteiro positivo.  
+<br/>
+
+#### Clérigo_Truque
+**Clérigo** - Inteiro positivo.    
+**Truque** - Inteiro positivo.   
+<br/>
+
+#### Clérigo_Cura
+**Clérigo** - Inteiro positivo.    
+**Cura** - Inteiro positivo.   
+<br/>
+
+#### Definição_Personagem
+**Personagem** - Inteiro positivo.      
+**Classe** - Atributo de texto.   
+**Raça** - Atributo de texto.   
+<br/>
