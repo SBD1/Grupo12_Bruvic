@@ -1,0 +1,12 @@
+{
+  "name": "sql",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "dependencies": {
+    "pg": "^8.7.3"
+  }
+}
