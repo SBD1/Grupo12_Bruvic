@@ -1,0 +1,31 @@
+version: '3'
+
+services: 
+    app: 
+      build: . 
+      depends_on: 
+        - postgres
+      ports:
+        - '8000:8000'
+      volumes: 
+        - .:/app/
+        - /app/node_modules
+      command: npm start
+    postgres:
+      image: postgres:13
+      ports:
+        - '5432:5432'
+      volumes:
+        - ./postgres:/var/lib/postgresql/data
+      environment:
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD: password
+        POSTGRES_DB: sbd1
+    pgadmin:
+      image: dpage/pgadmin4
+      ports:
+        - 5454:5454/tcp
+      environment:
+        - PGADMIN_DEFAULT_EMAIL=admin@mydomain.com
+        - PGADMIN_DEFAULT_PASSWORD=postgres
+        - PGADMIN_LISTEN_PORT=5454
