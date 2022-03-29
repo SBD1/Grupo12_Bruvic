@@ -1,12 +1,19 @@
+CREATE TABLE Mochila (
+    id SERIAL PRIMARY KEY,
+    capacidade FLOAT NOT NULL,
+    personagem INTEGER REFERENCES Personagem (id)
+);
+
 CREATE TABLE Item (
     nome VARCHAR PRIMARY KEY,
     preco INTEGER NOT NULL,
     peso FLOAT NOT NULL,
     eixo_x INTEGER,
     eixo_y INTEGER,
+    mapa INTEGER,
     mochila INTEGER REFERENCES Mochila (id),
     negociante INTEGER REFERENCES Negociante (npc),
-    FOREIGN KEY (eixo_x, eixo_y) REFERENCES Bloco (eixo_x, eixo_y)
+    FOREIGN KEY (eixo_x, eixo_y, mapa) REFERENCES Bloco (eixo_x, eixo_y, mapa)
 );
 
 CREATE TABLE ItemTipo (
@@ -47,12 +54,6 @@ CREATE TABLE Venda (
     personagem INTEGER REFERENCES Personagem (id),
     valor INTEGER NOT NULL,
     PRIMARY KEY (negociante, item, personagem)
-);
-
-CREATE TABLE Mochila (
-    id SERIAL PRIMARY KEY,
-    capacidade FLOAT NOT NULL,
-    personagem INTEGER REFERENCES Personagem (id)
 );
 
 CREATE TABLE Antecedente (
