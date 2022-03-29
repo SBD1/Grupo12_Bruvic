@@ -2,8 +2,8 @@ CREATE TABLE Item (
     nome VARCHAR PRIMARY KEY,
     preco INTEGER NOT NULL,
     peso FLOAT NOT NULL,
-    eixo_x INTEGER NOT NULL,
-    eixo_y INTEGER NOT NULL,
+    eixo_x INTEGER,
+    eixo_y INTEGER,
     mochila INTEGER REFERENCES Mochila (id),
     negociante INTEGER REFERENCES Negociante (npc),
     FOREIGN KEY (eixo_x, eixo_y) REFERENCES Bloco (eixo_x, eixo_y)
@@ -22,7 +22,7 @@ CREATE TABLE Bugiganga (
 );
 
 CREATE TABLE Moeda (
-    item_tipo VARCHAR PRIMARY KEY REFERENCES ItemTipo (item),
+    item_tipo VARCHAR PRIMARY KEY REFERENCES ItemTipo (item)
 );
 
 CREATE TABLE Pocao (
@@ -52,5 +52,20 @@ CREATE TABLE Venda (
 CREATE TABLE Mochila (
     id SERIAL PRIMARY KEY,
     capacidade FLOAT NOT NULL,
-    personagem INTEGER REFERENCES Personagem (id),
+    personagem INTEGER REFERENCES Personagem (id)
 );
+
+CREATE TABLE Antecedente (
+    nome VARCHAR PRIMARY KEY,
+    descricao VARCHAR(231) NOT NULL,
+    item_1 VARCHAR REFERENCES Item (nome),
+    item_2 VARCHAR REFERENCES Item (nome),
+    item_3 VARCHAR REFERENCES Item (nome),
+    item_4 VARCHAR REFERENCES Item (nome),
+    item_5 VARCHAR REFERENCES Item (nome),
+    item_6 VARCHAR REFERENCES Item (nome),
+    item_7 VARCHAR REFERENCES Item (nome),
+    item_8 VARCHAR REFERENCES Item (nome),
+    item_9 VARCHAR REFERENCES Item (nome),
+    item_10 VARCHAR REFERENCES Item (nome)
+)
