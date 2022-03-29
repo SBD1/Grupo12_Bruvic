@@ -34,6 +34,5 @@ CREATE TABLE NPC (
 );
 
 CREATE TABLE Negociante (
-    npc INTEGER REFERENCES NPC (id),
-    PRIMARY KEY (npc)
+    npc INTEGER PRIMARY KEY REFERENCES NPC (id),
 );

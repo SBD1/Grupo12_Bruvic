@@ -21,6 +21,10 @@ CREATE TABLE Bugiganga (
     eh_item_historia BOOLEAN NOT NULL
 );
 
+CREATE TABLE Moeda (
+    item_tipo VARCHAR PRIMARY KEY REFERENCES ItemTipo (item),
+);
+
 CREATE TABLE Pocao (
     item_tipo VARCHAR PRIMARY KEY REFERENCES ItemTipo (item),
     recuperacao INTEGER NOT NULL
