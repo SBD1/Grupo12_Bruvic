@@ -23,11 +23,16 @@ A partir desse momento, seu servidor será construído e após seu término, ser
 
 Após o acesso ao painel, acesse a seguinte: 
 
--- LINK PARA IMAGEM DO SERVIDOR -- 
+<img width="684" alt="Screen Shot 2022-03-28 at 23 54 35" src="https://user-images.githubusercontent.com/37307099/160524211-ac25d93a-2e1a-4a06-90b9-502bb0e5b2e2.png">
+
+
 
 Preencha os campos com as seguintes informações: 
 
--- LINK PARA IMAGEM COM AS INFORMAÇÕES -- 
+<img width="498" alt="Screen Shot 2022-03-28 at 23 55 21" src="https://user-images.githubusercontent.com/37307099/160524377-d96241be-98ad-435c-b888-548af784b0a4.png">
+
+![Screen Shot 2022-03-29 at 00 00 45](https://user-images.githubusercontent.com/37307099/160524409-4a778f10-e3a5-4568-9b6c-de33bfba8653.png)
+
 
 Obs: para o campo de senha pode ser usado "password". 
 
