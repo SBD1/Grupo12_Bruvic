@@ -5,26 +5,26 @@ CREATE TABLE Habilidade (
 ); 
 
 CREATE TABLE Habilidade_Tipo (
-    nome VARCHAR PRIMARY KEY REFERENCES Habilidade (nome),
+    nome VARCHAR PRIMARY KEY REFERENCES Habilidade (nome) ON DELETE CASCADE,
     tipo VARCHAR NOT NULL UNIQUE CHECK (tipo in ('Ataque', 'Cura', 'Truque', 'Magia'))
 ); 
 
 CREATE TABLE Ataque (
-    habilidade VARCHAR PRIMARY KEY REFERENCES Habilidade (nome),
+    habilidade VARCHAR PRIMARY KEY REFERENCES Habilidade (nome) ON DELETE CASCADE,
     dano INTEGER NOT NULL
 ); 
 
 CREATE TABLE Cura (
-    habilidade VARCHAR PRIMARY KEY REFERENCES Habilidade (nome),
+    habilidade VARCHAR PRIMARY KEY REFERENCES Habilidade (nome) ON DELETE CASCADE,
     recuparacao INTEGER NOT NULL
 ); 
 
 CREATE TABLE Truque (
-    habilidade VARCHAR PRIMARY KEY REFERENCES Habilidade (nome),
+    habilidade VARCHAR PRIMARY KEY REFERENCES Habilidade (nome) ON DELETE CASCADE,
     stun INTEGER NOT NULL
 ); 
 
 CREATE TABLE Magia (
-    habilidade VARCHAR PRIMARY KEY REFERENCES Habilidade (nome),
+    habilidade VARCHAR PRIMARY KEY REFERENCES Habilidade (nome) ON DELETE CASCADE,
     modificador INTEGER NOT NULL
 ); 
