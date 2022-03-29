@@ -6,7 +6,7 @@ CREATE TABLE Habilidade (
 
 CREATE TABLE Habilidade_Tipo (
     nome VARCHAR PRIMARY KEY REFERENCES Habilidade (nome) ON DELETE CASCADE,
-    tipo VARCHAR NOT NULL UNIQUE CHECK (tipo in ('Ataque', 'Cura', 'Truque', 'Magia'))
+    tipo VARCHAR NOT NULL CHECK (tipo in ('Ataque', 'Cura', 'Truque', 'Magia'))
 ); 
 
 CREATE TABLE Ataque (
