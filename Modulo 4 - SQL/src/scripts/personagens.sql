@@ -83,5 +83,5 @@ CREATE TABLE ClerigoCura (
 CREATE TABLE DefinicaoPersonagem(
     personagem INTEGER REFERENCES Personagem (id),
     raca VARCHAR NOT NULL,
-    classe VACHAR NOT NULL
+    classe VARCHAR NOT NULL
 );
