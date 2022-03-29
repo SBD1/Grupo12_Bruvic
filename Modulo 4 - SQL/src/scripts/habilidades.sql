@@ -16,7 +16,7 @@ CREATE TABLE Ataque (
 
 CREATE TABLE Cura (
     habilidade VARCHAR PRIMARY KEY REFERENCES Habilidade (nome) ON DELETE CASCADE,
-    recuparacao INTEGER NOT NULL
+    recuperacao INTEGER NOT NULL
 ); 
 
 CREATE TABLE Truque (
