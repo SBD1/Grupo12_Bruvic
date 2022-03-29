@@ -66,18 +66,18 @@ CREATE TABLE Clerigo (
 );
 
 CREATE TABLE MagoMagia (
-    mago INTEGER PRIMARY KEY REFERENCES Mago (personagem)
-    -- magia INTEGER REFERENCES Magia (id)
+    mago INTEGER PRIMARY KEY REFERENCES Mago (personagem),
+    magia VARCHAR REFERENCES Magia (habilidade)
 );
 
 CREATE TABLE ClerigoTruque (
-    clerigo INTEGER REFERENCES Clerigo (personagem)
-    -- truque INTEGER REFERENCES Truque (id)
+   clerigo INTEGER REFERENCES Clerigo (personagem),
+   truque VARCHAR REFERENCES Truque (habilidade)
 );
 
 CREATE TABLE ClerigoCura (
-    clerigo INTEGER REFERENCES Clerigo (personagem)
-    -- cura INTEGER REFERENCES Cura (id)
+    clerigo INTEGER REFERENCES Clerigo (personagem),
+    cura VARCHAR REFERENCES Cura (habilidade)
 );
 
 CREATE TABLE DefinicaoPersonagem(
