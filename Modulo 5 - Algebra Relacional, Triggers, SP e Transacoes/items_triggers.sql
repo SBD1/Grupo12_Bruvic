@@ -56,23 +56,22 @@ BEGIN TRANSACTION;
     DECLARE
     item_r record;
     personagem_r record;
+    capacidade_utilizada INTEGER;
+    mochila_r record;
     
     BEGIN
         SELECT * into item_r from ITEM where nome = 'faca mortifera';
         SELECT * into personagem_r from PERSONAGEM where nome = 'bolinha';
+        SELECT * into mochila_r from MOCHILA where id = 1;
+        SELECT SUM(peso) INTO capacidade_utilizada FROM ITEM WHERE mochila = 1;
 
-    IF personagem_r.montante >= item_r.preco THEN
+    IF (personagem_r.montante >= item_r.preco) AND (capacidade_utilizada <= mochila_r.capacidade) THEN
         UPDATE PERSONAGEM set montante = montante - item_r.preco where nome = personagem_r.nome;
         UPDATE NEGOCIANTE set montante = montante + item_r.preco where npc = 1;
         UPDATE ITEM set negociante = NULL, mochila = 1 where nome = item_r.nome;
     ELSE
-        RAISE NOTICE 'Personagem não possui dinheiro para realizar a compra do item';
+        RAISE NOTICE 'Personagem não possui dinheiro ou espaço na mochila para realizar a compra do item';
     END IF;
     end;
     $$;
 COMMIT;
-
-
--- verificar a capacidade da mochila
-
--- 
