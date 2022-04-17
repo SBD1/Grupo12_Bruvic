@@ -1,17 +1,3 @@
--- A transação a seguir realiza as operações por trás da venda de um item
--- de um negociante para um personagem. A execução desses passos de forma isolada
--- poderia causar inconsistência no banco de dados, logo estão dentro de uma transação
-BEGIN TRANSACTION;
-    DECLARE
-        item_r record;
-    SELECT item_record into item_r from ITEM where nome = 'faca mortifera';
-
-    UPDATE PERSONAGEM set montante = montante - item.preco where nome = 'bolinha';
-    UPDATE NEGOCIANTE set montante = montante + item.preco where id = 1;
-    UPDATE ITEM set negociante = NULL, mochila = 1 where id = item.id;
-COMMIT;
-
-
 -- O trigger é acionado em todo UPDATE da tabela Item
 -- caso a mochila tenha mudado, é porque houve uma venda, 
 -- que deve ser registrada na tabela VENDA
@@ -59,3 +45,29 @@ $statement_insert_item$ LANGUAGE plpgsql;
 CREATE TRIGGER statement_insert_item
 BEFORE INSERT OR UPDATE ON ITEM
 FOR EACH ROW EXECUTE PROCEDURE statement_insert_item();
+
+
+-- A transação a seguir realiza as operações por trás da venda de um item
+-- de um negociante para um personagem. A execução desses passos de forma isolada
+-- poderia causar inconsistência no banco de dados, logo estão dentro de uma transação
+BEGIN TRANSACTION;
+    do
+    $$
+    DECLARE
+    item_r record;
+    personagem_r record;
+    
+    BEGIN
+        SELECT * into item_r from ITEM where nome = 'faca mortifera';
+        SELECT * into personagem_r from PERSONAGEM where nome = 'bolinha';
+
+    IF personagem_r.montante >= item_r.preco THEN
+        UPDATE PERSONAGEM set montante = montante - item_r.preco where nome = personagem_r.nome;
+        UPDATE NEGOCIANTE set montante = montante + item_r.preco where npc = 1;
+        UPDATE ITEM set negociante = NULL, mochila = 1 where nome = item_r.nome;
+    ELSE
+        RAISE NOTICE 'Personagem não possui dinheiro para realizar a compra do item';
+    END IF;
+    end;
+    $$;
+COMMIT;
