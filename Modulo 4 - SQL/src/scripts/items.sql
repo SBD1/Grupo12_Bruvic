@@ -69,4 +69,5 @@ CREATE TABLE Antecedente (
     item_8 VARCHAR REFERENCES Item (nome),
     item_9 VARCHAR REFERENCES Item (nome),
     item_10 VARCHAR REFERENCES Item (nome)
-)
+);
+
