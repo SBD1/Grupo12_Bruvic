@@ -71,3 +71,8 @@ BEGIN TRANSACTION;
     end;
     $$;
 COMMIT;
+
+
+-- verificar a capacidade da mochila
+
+-- 
