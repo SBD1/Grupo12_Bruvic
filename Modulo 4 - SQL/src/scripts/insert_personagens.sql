@@ -1,12 +1,12 @@
 -- Inserção em personagens 
 INSERT INTO public.personagem(
-	id, vida, experiencia, nivel, nome, destreza, forca, constituicao, carisma, sabedoria, inteligencia, classe_de_armadura)
-	VALUES (1, 18, 0, 1, 'bolinha', 16, 15, 10, 11, 18, 19, 17),
-    (2, 22, 0, 1, 'ada', 11, 12, 19, 11, 17, 16, 11),
-    (3, 19, 0, 1, 'kiteria', 18, 18, 10, 18, 10, 19, 14),
-    (4, 25, 0, 1, 'alby', 15, 15, 19, 16, 14, 10, 20),
-    (5, 21, 0, 1, 'cordeia', 12, 16, 20, 11, 15, 12, 13),
-    (6, 23, 0, 1, 'thomas', 18, 15, 14, 13, 13, 13, 11);
+	id, vida, experiencia, nivel, nome, destreza, forca, constituicao, carisma, sabedoria, inteligencia, classe_de_armadura, montante)
+	VALUES (1, 18, 0, 1, 'bolinha', 16, 15, 10, 11, 18, 19, 17, 1000),
+    (2, 22, 0, 1, 'ada', 11, 12, 19, 11, 17, 16, 11, 900),
+    (3, 19, 0, 1, 'kiteria', 18, 18, 10, 18, 10, 19, 14, 800),
+    (4, 25, 0, 1, 'alby', 15, 15, 19, 16, 14, 10, 20, 800),
+    (5, 21, 0, 1, 'cordeia', 12, 16, 20, 11, 15, 12, 13, 700),
+    (6, 23, 0, 1, 'thomas', 18, 15, 14, 13, 13, 13, 11, 700);
 
 
 -- Inserção de anoes

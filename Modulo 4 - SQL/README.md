@@ -36,4 +36,4 @@ Preencha os campos com as seguintes informações:
 
 Obs: para o campo de senha pode ser usado "password". 
 
-Clique sem save e então você estará conectado ao banco de dados do projeto. 
+Clique em save e então você estará conectado ao banco de dados do projeto. 

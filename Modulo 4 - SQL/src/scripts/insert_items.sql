@@ -5,6 +5,7 @@ INSERT INTO public.item(
 	VALUES ('adaga', 2, 0.5), 
     ('machadinha', 5, 1), 
     ('tridente', 5, 2), 
+	('mochila', 10, 1),
     ('besta pesada', 50, 4.5);
 
 INSERT INTO public.itemtipo(

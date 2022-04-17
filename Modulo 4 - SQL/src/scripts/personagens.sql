@@ -10,7 +10,8 @@ CREATE TABLE Personagem (
     carisma SMALLINT NOT NULL,
     sabedoria SMALLINT NOT NULL,
     inteligencia SMALLINT NOT NULL,
-    classe_de_armadura SMALLINT
+    classe_de_armadura SMALLINT,
+    montante FLOAT NOT NULL
 );
 
 CREATE TABLE Humano (
