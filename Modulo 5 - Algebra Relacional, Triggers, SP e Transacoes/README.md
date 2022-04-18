@@ -1,6 +1,6 @@
 # Módulo 5 - Álgebra Relacional, Triggers, Storage Procedure e Transações
 
-No presente módulo, houve a continuação do desenvolvimento do trabalho do grupo, referentes aos conteúdos ministrados no módulo 5, que são Álgebra Relacional, Triggers, Storage Procedure e Transações, que guiaram a implementação e aperfeiçoamento dos scripts.
+No presente módulo, houve a continuação do desenvolvimento do trabalho do grupo, referentes aos conteúdos ministrados no módulo 5, que são Álgebra Relacional, Triggers, Storage Procedure e Transações, que guiaram a implementação e aperfeiçoamento dos scripts. Em adição, a este módulo, houve a atualização da [versão número 7](../Modulo%201%20-%20DER/der_bruvic_v7.png) do diagrama entidade e relacionamento de acordo com o desenvolvimento e as necessidades do projeto. 
 
 ## Triggers e Storage Procedure
 Os gatilhos, ou triggers são ações que podem acontecer devido a ocorrência de algum evento. A sua execução no projeto foi útil para facilitar o desenvolvimento de algumas regras de negócio, como por exemplo, promover a mudança de itens de uma mochila para outra em uma negociação. Além disso, manteve-se a boa prática de auditoria, como informações sobre ações ocorrendo no banco de dados.
