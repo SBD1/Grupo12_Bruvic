@@ -28,7 +28,7 @@ INSERT INTO public.ataque(
 		   ('Soco sério', 42);
 
 INSERT INTO public.cura(
-	habilidade, recuparacao)
+	habilidade, recuperacao)
 	VALUES ('Palavra curativa', 8),
 		   ('Cura em massa', 4);
 
