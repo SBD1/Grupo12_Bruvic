@@ -91,3 +91,43 @@ $cria_cura$ LANGUAGE plpgsql;
 CREATE TRIGGER cria_cura_trigger
 BEFORE INSERT ON Cura
 FOR EACH ROW EXECUTE PROCEDURE cria_cura();
+
+
+-- ======================================= CHECK TRUQUE  ===========================================================================================
+
+CREATE OR REPLACE FUNCTION cria_truque() RETURNS trigger AS $cria_truque$
+DECLARE 
+    ataques INTEGER;
+    curas INTEGER;
+    magias INTEGER; 
+BEGIN 
+    ataques := COUNT(*) FROM Ataque where habilidade = new.habilidade;
+    IF ataques > 0 THEN 
+        RAISE EXCEPTION 'Já existe um ataque com essa referência de habilidade!';
+        RETURN NULL;
+    END IF; 
+
+    curas := COUNT(*) FROM Cura where habilidade = new.habilidade;
+    IF curas > 0 THEN 
+        RAISE EXCEPTION 'Já existe uma cura com essa referência de habilidade!';
+        RETURN NULL;
+    END IF; 
+    
+    magias := COUNT(*) FROM Magia WHERE habilidade = new.habilidade; 
+    IF magias > 0 THEN
+        RAISE EXCEPTION 'Já existe uma magia com essa referência de habilidade!'; 
+        RETURN NULL;
+    END IF;
+
+    UPDATE Habilidade_Tipo 
+    SET tipo = 'Truque'
+    WHERE nome = new.habilidade;
+
+    return new; 
+END;
+
+$cria_truque$ LANGUAGE plpgsql;
+
+CREATE TRIGGER cria_truque_trigger
+BEFORE INSERT ON Truque
+FOR EACH ROW EXECUTE PROCEDURE cria_truque();
