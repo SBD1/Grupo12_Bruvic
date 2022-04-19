@@ -9,13 +9,11 @@ BEGIN
 END;
 $cria_personagem$ LANGUAGE plpgsql;
 
-DROP TRIGGER cria_definicao_personagem on Personagem;
+-- DROP TRIGGER cria_definicao_personagem on Personagem;
 CREATE TRIGGER cria_definicao_personagem
 AFTER INSERT ON Personagem
 FOR EACH ROW EXECUTE PROCEDURE cria_personagem();
-
 ------
-
 CREATE OR REPLACE FUNCTION exclui_personagem() RETURNS trigger AS $exclui_personagem$
 BEGIN
     DELETE FROM DefinicaoPersonagem WHERE Personagem = old.id;
@@ -24,7 +22,7 @@ BEGIN
 END;
 $exclui_personagem$ LANGUAGE plpgsql;
 
-DROP TRIGGER exclui_definicao_personagem on Personagem;
+-- DROP TRIGGER exclui_definicao_personagem on Personagem;
 CREATE TRIGGER exclui_definicao_personagem
 AFTER DELETE ON Personagem
 FOR EACH ROW EXECUTE PROCEDURE exclui_personagem();
@@ -65,12 +63,12 @@ BEGIN
     SET classe = 'Guerreiro'
     WHERE personagem = new.personagem;
 
-    RAISE NOTICE 'Guerreiro Criado com sucesso!';
+    RAISE NOTICE 'Guerreiro criado com sucesso!';
     RETURN NEW;
 END;
 $cria_guerreiro$ LANGUAGE plpgsql;
 
-DROP TRIGGER checa_guerreiro on Guerreiro;
+-- DROP TRIGGER checa_guerreiro on Guerreiro;
 CREATE TRIGGER checa_guerreiro
 BEFORE INSERT ON Guerreiro
 FOR EACH ROW EXECUTE PROCEDURE cria_guerreiro();
@@ -107,12 +105,12 @@ BEGIN
     SET classe = 'Mago'
     WHERE personagem = new.personagem;
 
-    RAISE NOTICE 'Mago Criado com sucesso!';
+    RAISE NOTICE 'Mago criado com sucesso!';
     RETURN NEW;
 END;
 $cria_mago$ LANGUAGE plpgsql;
 
-DROP TRIGGER checa_mago on Mago;
+-- DROP TRIGGER checa_mago on Mago;
 CREATE TRIGGER checa_mago
 BEFORE INSERT ON Mago
 FOR EACH ROW EXECUTE PROCEDURE cria_mago();
@@ -149,12 +147,12 @@ BEGIN
     SET classe = 'Clerigo'
     WHERE personagem = new.personagem;
 
-    RAISE NOTICE 'Clerigo Criado com sucesso!';
+    RAISE NOTICE 'Clerigo criado com sucesso!';
     RETURN NEW;
 END;
 $cria_clerigo$ LANGUAGE plpgsql;
 
-DROP TRIGGER checa_clerigo on Clerigo;
+-- DROP TRIGGER checa_clerigo on Clerigo;
 CREATE TRIGGER checa_clerigo
 BEFORE INSERT ON Clerigo
 FOR EACH ROW EXECUTE PROCEDURE cria_clerigo();
@@ -207,12 +205,12 @@ BEGIN
     SET raca = 'Humano'
     WHERE personagem = new.personagem;
 
-    RAISE NOTICE 'Humano Criado com sucesso!';
+    RAISE NOTICE 'Humano criado com sucesso!';
     RETURN NEW;
 END;
 $cria_humano$ LANGUAGE plpgsql;
 
-DROP TRIGGER checa_humano on Humano;
+-- DROP TRIGGER checa_humano on Humano;
 CREATE TRIGGER checa_humano
 BEFORE INSERT ON Humano
 FOR EACH ROW EXECUTE PROCEDURE cria_humano();
@@ -261,12 +259,12 @@ BEGIN
     SET raca = 'Anao'
     WHERE personagem = new.personagem;
 
-    RAISE NOTICE 'Anão Criado com sucesso!';
+    RAISE NOTICE 'Anão criado com sucesso!';
     RETURN NEW;
 END;
 $cria_anao$ LANGUAGE plpgsql;
 
-DROP TRIGGER checa_anao on Anao;
+-- DROP TRIGGER checa_anao on Anao;
 CREATE TRIGGER checa_anao
 BEFORE INSERT ON Anao
 FOR EACH ROW EXECUTE PROCEDURE cria_anao();
@@ -320,7 +318,7 @@ BEGIN
 END;
 $cria_elfo$ LANGUAGE plpgsql;
 
-DROP TRIGGER checa_elfo on MeioElfo;
+-- DROP TRIGGER checa_elfo on MeioElfo;
 CREATE TRIGGER checa_elfo
 BEFORE INSERT ON MeioElfo
 FOR EACH ROW EXECUTE PROCEDURE cria_elfo();
@@ -374,7 +372,7 @@ BEGIN
 END;
 $cria_draconato$ LANGUAGE plpgsql;
 
-DROP TRIGGER checa_draconato on Draconato;
+-- DROP TRIGGER checa_draconato on Draconato;
 CREATE TRIGGER checa_draconato
 BEFORE INSERT ON Draconato
 FOR EACH ROW EXECUTE PROCEDURE cria_draconato();

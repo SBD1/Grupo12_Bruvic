@@ -15,7 +15,7 @@ CREATE TABLE Personagem (
 );
 
 CREATE TABLE Humano (
-    personagem INTEGER PRIMARY KEY REFERENCES Personagem (id),
+    personagem INTEGER PRIMARY KEY REFERENCES Personagem (id) ON DELETE CASCADE,
     bonus_destreza SMALLINT,
     bonus_forca SMALLINT,
     bonus_constituicao SMALLINT,
@@ -27,7 +27,7 @@ CREATE TABLE Humano (
 );
 
 CREATE TABLE Anao (
-    personagem INTEGER PRIMARY KEY REFERENCES Personagem (id),
+    personagem INTEGER PRIMARY KEY REFERENCES Personagem (id) ON DELETE CASCADE,
     bonus_forca SMALLINT,
     bonus_constituicao SMALLINT,
     CONSTRAINT checa_atributos_anao 
@@ -35,7 +35,7 @@ CREATE TABLE Anao (
 );
 
 CREATE TABLE MeioElfo (
-    personagem INTEGER PRIMARY KEY REFERENCES Personagem (id),
+    personagem INTEGER PRIMARY KEY REFERENCES Personagem (id) ON DELETE CASCADE,
     bonus_sabedoria SMALLINT,
     bonus_destreza SMALLINT,
     CONSTRAINT checa_atributos_meio_elfo 
@@ -43,7 +43,7 @@ CREATE TABLE MeioElfo (
 );
 
 CREATE TABLE Draconato (
-    personagem INTEGER PRIMARY KEY REFERENCES Personagem (id),
+    personagem INTEGER PRIMARY KEY REFERENCES Personagem (id) ON DELETE CASCADE,
     bonus_carisma SMALLINT,
     bonus_inteligencia SMALLINT,
     CONSTRAINT checa_atributos_draconato 
@@ -51,7 +51,7 @@ CREATE TABLE Draconato (
 );
 
 CREATE TABLE Guerreiro (
-    personagem INTEGER PRIMARY KEY REFERENCES Personagem (id),
+    personagem INTEGER PRIMARY KEY REFERENCES Personagem (id) ON DELETE CASCADE,
     bonus_classe_armadura SMALLINT,
     bonus_ataque SMALLINT,
     CONSTRAINT checa_atributos_guerreiro 
@@ -59,11 +59,11 @@ CREATE TABLE Guerreiro (
 );
 
 CREATE TABLE Mago (
-    personagem INTEGER PRIMARY KEY REFERENCES Personagem (id)
+    personagem INTEGER PRIMARY KEY REFERENCES Personagem (id) ON DELETE CASCADE
 );
 
 CREATE TABLE Clerigo (
-    personagem INTEGER PRIMARY KEY REFERENCES Personagem (id)
+    personagem INTEGER PRIMARY KEY REFERENCES Personagem (id) ON DELETE CASCADE
 );
 
 CREATE TABLE MagoMagia (
