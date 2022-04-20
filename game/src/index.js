@@ -1,4 +1,4 @@
-console.log('START APP!!!')
+require('./db/db_config').connect(); 
 
 const ItemsManager = require("./models/items/items_manager");
 

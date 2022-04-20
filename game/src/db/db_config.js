@@ -1,5 +1,12 @@
 
+let db_client; 
+
+function getClient(){
+    return db_client;
+}
+
 async function connect() {
+    console.info('Conectando com o banco de dados');
     if (global.connection)
         return global.connection.connect();
 
@@ -10,15 +17,15 @@ async function connect() {
 
     //apenas testando a conexão
     const client = await pool.connect();
-    console.log("Criou pool de conexões no PostgreSQL!");
+    console.info("Criou pool de conexões no PostgreSQL!");
 
     const res = await client.query('SELECT NOW()');
-    console.log(res.rows[0]);
+    console.info(res.rows[0]);
     client.release();
 
     //guardando para usar sempre o mesmo
     global.connection = pool;
-    return pool.connect();
+    db_client = pool.connect();
 }
 
 const fs = require('fs');
@@ -44,5 +51,6 @@ async function populateDatabase (){
 
 
 exports.connect = connect; 
+exports.getClient = getClient; 
 exports.initDatabase = initDatabase;
 exports.populateDatabase = populateDatabase;
