@@ -1,5 +1,8 @@
 console.log('START APP!!!')
 
-const db = require("./db/db_config");
+const ItemsManager = require("./models/items/items_manager");
 
-const client = db.connect();
+ItemsManager.get("adaga").then((res)=>{
+    console.log("terminou de executar:");
+    console.log(res);
+})
