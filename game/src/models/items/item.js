@@ -1,5 +1,5 @@
 const db = require("../../db/db_config");
-const client = db.getClient();
+const client = db.connect();
 
 module.exports = class Item  {
     constructor(nome, preco, peso, eixo_x=null, eixo_y=null, mapa=null, mochila=null, negociante=null){

@@ -4,7 +4,7 @@ const db = require("../../db/db_config");
 module.exports = class ItemsManager {
 
     static async get(nome){
-        const client = db.getClient();
+        const client = await db.connect();
         const querySelectByName = `SELECT * from ITEM where nome = '${nome}'`
 
         const retrived_item = await client.query(querySelectByName).then((res)=>{
