@@ -22,16 +22,26 @@ async function connect() {
 
 const fs = require('fs');
 
-async function initDatabase (){
-    console.log("entrou no init miseravi")
-    const ddlScript = fs.readFileSync('./src/db/ddl_script.sql').toString();
+async function executeSqlFile (fileSource, successMessage) {
+    const scriptFile = fs.readFileSync(fileSource).toString();
     const client = await connect();
-    client.query(ddlScript).then(() => {
-        console.log("banco de dados populado com sucesso.")
-        process.exit(0)
+    client.query(scriptFile).then(() => {
+        console.log(successMessage)
+        process.exit(0);
+
     });
 }
+
+async function initDatabase (){
+    executeSqlFile ('./src/db/ddl_script.sql', "banco de dados criado com sucesso.");
+}
+
+async function populateDatabase (){
+    executeSqlFile ('./src/db/dml_script.sql', "banco de dados populado com sucesso.");
+}
+
 
 
 exports.connect = connect; 
 exports.initDatabase = initDatabase;
+exports.populateDatabase = populateDatabase;
