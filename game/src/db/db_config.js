@@ -1,3 +1,4 @@
+
 async function connect() {
     if (global.connection)
         return global.connection.connect();
@@ -20,5 +21,19 @@ async function connect() {
     return pool.connect();
 }
 
+const fs = require('fs');
+
+async function initDatabase (){
+    console.log("entrou no init miseravi")
+    const ddlScript = fs.readFileSync('./src/db/ddl_script.sql').toString();
+    const client = await connect();
+    client.query(ddlScript).then(() => {
+        console.log("banco de dados populado com sucesso.")
+        process.exit(0)
+
+    });
+}
+
 
 exports.connect = connect; 
+exports.initDatabase = initDatabase;

@@ -1,5 +1,5 @@
 console.log('START APP!!!')
 
-const db = require("./db");
+const db = require("./db/db_config");
 
-db.connect();
+const client = db.connect();
