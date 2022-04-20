@@ -18,21 +18,21 @@ async function connect() {
     //apenas testando a conexão
     const client = await pool.connect();
     console.info("Criou pool de conexões no PostgreSQL!");
-
+    
     const res = await client.query('SELECT NOW()');
     console.info(res.rows[0]);
     client.release();
-
+    
     //guardando para usar sempre o mesmo
     global.connection = pool;
-    db_client = pool.connect();
+    db_client = client;
 }
 
 const fs = require('fs');
 
 async function executeSqlFile (fileSource, successMessage) {
     const scriptFile = fs.readFileSync(fileSource).toString();
-    const client = await connect();
+    const client = getClient();
     client.query(scriptFile).then(() => {
         console.log(successMessage)
         process.exit(0);
