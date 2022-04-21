@@ -58,10 +58,10 @@ INSERT INTO public.bloco (
 -- Insert npc
 
 INSERT INTO public.npc (
-	eixo_x, eixo_y, mapa, tipo, vida)
-	VALUES (1, 3, 1, 'negociante', 100), 
-    (8, 5, 2, 'viajante', 100),  
-    (10, 4, 3, 'negociante', 100);
+	eixo_x, eixo_y, mapa, tipo, vida, nome)
+	VALUES (1, 3, 1, 'negociante', 100, 'Vendedor de armas'), 
+    (8, 5, 2, 'viajante', 100, 'Viajante das Brisas'),  
+    (10, 4, 3, 'negociante', 100, 'Dono de Bar');
 
 INSERT INTO public.negociante (
 	npc, montante)
@@ -69,11 +69,19 @@ INSERT INTO public.negociante (
     (3, 3000);  
 
 INSERT INTO public.item(nome, preco, peso, negociante) 
-    VALUES ('faca mortifera', 600, 1, 1);
+    VALUES ('faca mortifera', 600, 1, 1),
+	('espada flamejante', 700, 2, 1),
+	('garapa envenenada', 10, 0.1, 3),
+	('garapa', 5, 0.1, 3),
+	('manopla mágica', 1000, 5, 1);
 
 INSERT INTO public.itemtipo(
 	item, tipo)
-	VALUES ('faca mortifera', 'arma');
+	VALUES ('faca mortifera', 'arma'),
+	('espada flamejante', 'arma'),
+	('garapa envenenada', 'poção'),
+	('garapa', 'poção'),
+	('manopla mágica', 'arma');
 
 
 -- Insert personagem
