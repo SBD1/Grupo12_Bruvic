@@ -26,11 +26,15 @@ module.exports = class ItemsManager {
         return;
     }
 
-    static async getAllFromNegociante(){
+    static async getAllFromNegociante(negociante){
+        const client = await db.connect();
+        const querySelectByName = `SELECT * from ITEM where negociante = '${negociante.id}'`
         return;
     }
 
-    static async getAllFromMochila(){
+    static async getAllFromMochila(mochila){
+        const client = await db.connect();
+        const querySelectByName = `SELECT * from ITEM where mochila = '${mochila.id}'`
         return;
     }
 
