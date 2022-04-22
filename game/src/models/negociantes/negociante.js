@@ -1,3 +1,5 @@
+const ItemsManager = require("../items/items_manager");
+
 module.exports = class Negociante  {
     constructor(id, eixo_x, eixo_y, mapa, nome, tipo, vida, montante){
 
@@ -10,5 +12,9 @@ module.exports = class Negociante  {
         this.mapa = mapa;
         this.vida = vida;
         this.montante = montante;
+    }
+
+    setItems(){
+        this.items = ItemsManager.getAllFromNegociante(this);
     }
 }

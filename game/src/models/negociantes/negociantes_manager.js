@@ -9,7 +9,7 @@ module.exports = class NegociantesManager {
 
         const retrived_negociantes = await client.query(querySelectByName).then((res)=>{
             const negociantes = [];
-            res.rows.forEach(function(negociante) {
+            res.rows.forEach((negociante) => {
                 negociantes.push(new Negociante(
                     negociante.id,
                     negociante.eixo_x,
