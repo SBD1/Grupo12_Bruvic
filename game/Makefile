@@ -14,3 +14,6 @@ init-db:
 
 populate-db:
 	sudo docker-compose exec app node -e 'require("./src/db/db_config").populateDatabase()'
+
+start-game:
+	sudo docker-compose exec app node ./src/index.js
