@@ -1,7 +1,6 @@
 
 
 // require('./db/db_config').connect().then(async (client) => {
-//     const ItemsManager = require("./models/items/items_manager");
 //     ItemsManager.get("adaga").then((res) => {
 //         console.log("terminou de executar:");
 //         console.log(res);
@@ -16,6 +15,9 @@
 const chalk = require('chalk');
 const clear = require('clear');
 const figlet = require('figlet');
+const praca_negociantes_control = require('./user_interaction/praca_negociantes/praca_negociantes_control');
+
+
 clear();
 
 console.log(
@@ -23,3 +25,5 @@ console.log(
     figlet.textSync('Bruvic', { horizontalLayout: 'full' })
   )
 );
+
+praca_negociantes_control.run();
