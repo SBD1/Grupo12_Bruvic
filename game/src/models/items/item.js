@@ -18,11 +18,13 @@ module.exports = class Item  {
     }
 
 
-    vender(personagem){
+    async vender(personagem){
         const fs = require('fs');
-        const scriptFile = fs.readFileSync("./item_sale.sql").toString();
-        const values = [`'${this.nome}'`, `'${personagem.nome}'`];
-        return client.query(scriptFile, values);
+        const patha = require('path').resolve(__dirname, './item_sale.sql');
+        console.log(patha)
+        const scriptFile = fs.readFileSync(patha).toString();
+        const values = [`'${this.nome}'`, `'${personagem.nome}'`, `'${personagem.idMochila}'`];
+        await client.query(scriptFile, values);
     }
 
     removerItemDaMochila(){
