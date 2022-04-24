@@ -15,7 +15,7 @@ const inquirer = require('inquirer');
 const chalk = require('chalk');
 
 
-const BACK_MENU = 'voltar para o menu anterior'
+const BACK_MENU = 'voltar para o menu anterior';
 
 async function choiceFromNegocianteList(negociantes) {
   console.log(

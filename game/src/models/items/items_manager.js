@@ -44,9 +44,9 @@ module.exports = class ItemsManager {
         return await retrived_items;
     }
 
-    static async getAllFromMochila(mochila){
+    static async getAllFromMochila(personagem){
         const client = await db.connect();
-        const querySelectByMochila = `SELECT * from ITEM where mochila = '${mochila.id}'`
+        const querySelectByMochila = `SELECT * from ITEM where mochila = '${personagem.idMochila}'`
         return;
     }
 

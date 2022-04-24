@@ -15,7 +15,7 @@
 const chalk = require('chalk');
 const clear = require('clear');
 const figlet = require('figlet');
-const praca_negociantes_control = require('./user_interaction/praca_negociantes/praca_negociantes_control');
+const personagemControl = require('./user_interaction/personagem_loc/personagem_loc_control');
 
 
 clear();
@@ -26,4 +26,4 @@ console.log(
   )
 );
 
-praca_negociantes_control.run();
+personagemControl.run();
