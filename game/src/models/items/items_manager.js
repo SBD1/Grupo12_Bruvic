@@ -21,16 +21,11 @@ module.exports = class ItemsManager {
         return await retrived_item;
     }
 
-    static create(nome, preço){
-        // faz um insert e retorna o item
-        return;
-    }
-
     static async getAllFromNegociante(negociante){
         const client = await db.connect();
         const querySelectByNegociante = `SELECT * from ITEM where negociante = '${negociante.id}'`
-        
         const items = [];
+
         const retrived_items = await client.query(querySelectByNegociante).then((res)=>{
             res.rows.forEach((item) => {
                 items.push(new Item(item.nome, 
