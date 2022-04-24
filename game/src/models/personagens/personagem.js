@@ -1,7 +1,8 @@
 module.exports = class Personagem  {
     constructor(id, vida, nome, destreza, forca, 
                 constituicao, carisma, sabedoria, inteligencia, montante,
-                raca=null, classe=null, classe_de_armadura=null, experiencia=null, nivel=null){
+                raca=null, classe=null, classe_de_armadura=null, experiencia=null, 
+                nivel=null){
 
         // mandatory fields
         this.id = id
@@ -22,5 +23,11 @@ module.exports = class Personagem  {
 
         this.raca = raca
         this.classe = classe
+
+    }
+
+    setMochilaInfo(capacidadeMochila=null, idMochila=null){
+        this.capacidadeMochila = capacidadeMochila
+        this.idMochila = idMochila
     }
 }
