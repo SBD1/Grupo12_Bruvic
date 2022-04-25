@@ -1,10 +1,4 @@
-var readline = require('readline');
-
-var rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout
-
-});
+import { readline } from "../utils/readline";
 
 const cleanScreen = () => console.clear();
 
@@ -31,9 +25,9 @@ const buildMenuOptions = () => {
 };
 
 const getOption = () => {
-    rl.question("Selecione a opção:  ", function(answer) {
+    readline.question("Selecione a opção:  ", function(answer) {
         console.log(answer);
-        rl.close();
+        readline.close();
      });
 };
 
