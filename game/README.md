@@ -1,20 +1,31 @@
 # Como executar o projeto
 
-O projeto é executado dentro de contâiners docker. Para executar pela primeira vez rode
-
+1. O projeto é executado dentro de contâineres docker. Para executar pela primeira vez rode
 
 ```
-$ docker-compose up --build
+$ make build
 ```
 
-Para criar as tabelas do banco de dados execute o comando em outro terminal (OBS: É necessário que os containers estejam rodando):
+Nas outras execuções basta rodar:
+
+```
+$ make up
+```
+
+2. Para criar as tabelas do banco de dados execute o comando em outro terminal (OBS: É necessário que os containeres estejam rodando):
 
 ```
 $ make init-db
 ```
 
-Para popular o banco de dados, basta rodar o seguinte comando em outro terminal (OBS: É necessário que os containers estejam rodando):
+3. Para popular o banco de dados, basta rodar o seguinte comando em outro terminal (OBS: É necessário que os containeres estejam rodando):
 
 ```
 $ make populate-db
+```
+
+4. Quando todo o ambiente for configurado, será possível executar o terminal do jogo (OBS: É necessário que os conteineres estejam rodando):
+
+```
+$ make start-game
 ```
