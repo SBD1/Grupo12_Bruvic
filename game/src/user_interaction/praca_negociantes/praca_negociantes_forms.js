@@ -28,29 +28,16 @@ async function choiceFromNegocianteList(negociantes) {
 
 async function choiceFromItemList(negociante, items) {
   console.log(
-    chalk.green(
+    chalk.blue(
         `Essa é a loja de ${negociante.nome}. Ele dá as boas-vindas para todos os pechinchadores.`
     )
     );
 
-    const clui = require('clui'),
-     clc = require('cli-color'),
-    Line = clui.Line;
-
-    var headers = new Line()
-      .padding(2)
-      .column('Nome', 30, [clc.cyan])
-      .column('Preço', 10, [clc.cyan])
-      .column('Peso', 10, [clc.cyan])
-      .fill();
+  const Item = require('../../models/items/item');
+  const headers = Item.cabecalhoTabela();
 
   const items_choices = items.map((item) => { 
-    item_name_line = new Line()
-    .padding(2)
-    .column(item.nome, 30, [clc.cyan])
-    .column(String(item.preco), 10, [clc.cyan])
-    .column(String(item.peso), 10, [clc.cyan])
-    .fill();
+    item_name_line = item.visualizarEmLinha();
     return {name: item_name_line.contents(), value: item, short: item.nome}
   });
   items_choices.push({name: BACK_MENU, value: BACK_MENU, short:BACK_MENU});

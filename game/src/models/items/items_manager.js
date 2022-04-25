@@ -46,10 +46,28 @@ module.exports = class ItemsManager {
         return await retrived_items;
     }
 
-    static async getAllFromMochila(personagem){
+    static async getAllFromPersonagem(personagem){
         const client = await db.connect();
         const querySelectByMochila = `SELECT * from ITEM where mochila = '${personagem.idMochila}'`
-        return;
+        const items = [];
+
+        const retrived_items = await client.query(querySelectByMochila).then((res)=>{
+            res.rows.forEach((item) => {
+                items.push(new Item(item.nome, 
+                    item.preco, 
+                    item.peso, 
+                    item.eixo_x, 
+                    item.eixo_y,
+                    item.mapa,
+                    item.mochila,
+                    item.negociante));
+            }
+
+            );
+            return items;
+        });
+        client.release();
+        return await retrived_items;
     }
 
 }
