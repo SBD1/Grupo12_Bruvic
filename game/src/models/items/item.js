@@ -1,5 +1,4 @@
 const db = require("../../db/db_config");
-const client = db.connect();
 
 module.exports = class Item  {
     constructor(nome, preco, peso, eixo_x=null, eixo_y=null, mapa=null, mochila=null, negociante=null){
@@ -20,11 +19,14 @@ module.exports = class Item  {
 
     async vender(personagem){
         const fs = require('fs');
-        const patha = require('path').resolve(__dirname, './item_sale.sql');
-        console.log(patha)
-        const scriptFile = fs.readFileSync(patha).toString();
-        const values = [`'${this.nome}'`, `'${personagem.nome}'`, `'${personagem.idMochila}'`];
-        await client.query(scriptFile, values);
+        const pathToScript = require('path').resolve(__dirname, './item_sale.sql');
+        const scriptFile = fs.readFileSync(pathToScript).toString();
+        const client = await db.connect();
+
+        await client.query(scriptFile).then(async ()=>{
+            await client.query(`select vendeItem('${this.nome}', '${personagem.nome}', ${personagem.idMochila})`);
+        });
+        client.release();
     }
 
     removerItemDaMochila(){

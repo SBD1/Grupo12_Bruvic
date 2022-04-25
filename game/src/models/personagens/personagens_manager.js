@@ -22,7 +22,8 @@ module.exports = class PersonagensManager {
         await client.query(`SELECT * FROM MOCHILA WHERE personagem = ${retrived_personagem.id}`).then((res) => {
             const personagem_mochila = res.rows[0];
             retrived_personagem.setMochilaInfo(personagem_mochila.capacidade, personagem_mochila.id)
-        })
+        });
+        client.release();
         return await retrived_personagem;
     }
 }

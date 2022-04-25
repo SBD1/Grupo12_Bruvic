@@ -1,16 +1,3 @@
-// Bem vindo bolinha a praça dos negociantes, existem esses negociantes nas suas proximidades:
-    // 1 - Homi da arma 
-    // 2 - Homi da breja
-    // Gostaria de negociar com algum deles? Digite o número, se não, digite 0
-
-    // 1
-    // O homi da arma possui esses items em sua posse:
-    // 1 - item preço
-    // 2- - item preço
-
-    // você gostaria de comprar com o homi da arma? para olhar outras barracas, digite 0
-
-
 const inquirer = require('inquirer');
 const chalk = require('chalk');
 
@@ -19,7 +6,7 @@ const BACK_MENU = 'voltar para o menu anterior';
 
 async function choiceFromNegocianteList(negociantes) {
   console.log(
-    chalk.green(
+    chalk.blue(
         "Bem-vinde a praça dos negociantes, aqui você conseguirá encontrar de tudo!"
     )
     );

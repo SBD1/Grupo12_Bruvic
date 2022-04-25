@@ -1,6 +1,7 @@
 const forms  = require('./praca_negociantes_forms');
 const ItemsManager = require("../../models/items/items_manager");
 const NegociantesManager = require('../../models/negociantes/negociantes_manager');
+const chalk = require('chalk');
 
 async function negociantesFlow(personagem){
     const negociantes = await NegociantesManager.getAll().then((res)=>{return res});
@@ -22,18 +23,23 @@ async function negociantesFlow(personagem){
 }
 
 async function itemsFlow(formItem, personagem){
+    const clear = require('clear');
+
     if(formItem.selecaoItem == forms.BACK_MENU){
-        const clear = require('clear');
         clear();
         await negociantesFlow(personagem);
     } else {
-        formItem.selecaoItem.vender(personagem);
+        await formItem.selecaoItem.vender(personagem);
+        clear();
+        console.log(
+            chalk.green(`Você adquiriu o item ${formItem.selecaoItem.nome} com sucesso e foi transferido para sua mochila.\n\n\n\n`)
+        );
+        await negociantesFlow(personagem);
     }
 }
 
 module.exports = {
     run: async (personagem) => {
-        console.log("entrou pra rodar o negociantesFlow")
         negociantesFlow(personagem);
     }
 }

@@ -18,6 +18,7 @@ module.exports = class ItemsManager {
                             item.mochila,
                             item.negociante);
         });
+        client.release();
         return await retrived_item;
     }
 
@@ -41,6 +42,7 @@ module.exports = class ItemsManager {
             );
             return items;
         });
+        client.release();
         return await retrived_items;
     }
 
