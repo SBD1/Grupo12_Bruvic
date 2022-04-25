@@ -13,7 +13,7 @@ BEGIN TRANSACTION;
     BEGIN
         SELECT * into item_r from ITEM where nome = $1;
         SELECT * into personagem_r from PERSONAGEM where nome = $2;
-        SELECT * into mochila_r from MOCHILA where id = 1;
+        SELECT * into mochila_r from MOCHILA where id = $3;
         SELECT SUM(peso) INTO capacidade_utilizada FROM ITEM WHERE mochila = 1;
 
     IF (personagem_r.montante >= item_r.preco) AND (capacidade_utilizada <= mochila_r.capacidade) THEN
