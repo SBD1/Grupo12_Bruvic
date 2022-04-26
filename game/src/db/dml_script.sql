@@ -12,18 +12,6 @@ Uma criatura, à sua escolha, que você possa ver dentro do alcance recupera uma
 		   ('Ataque de oportunidade', 'Um Ataque de Oportunidade “interrompe” o fluxo do combate; seu personagem aproveita um lapso de defesa de seu oponente e dá um tabefe nele antes que ele venha a agir.', 1), -- Ataque 
 		   ('Soco sério', 'Da série mortalmente séria, o soco sério mata qualquer inimigo instantaneamente', 1); -- Ataque 
 
-
---INSERT INTO public.habilidade_tipo(
---	nome, tipo)
---	VALUES ('Rajada mística', 'Magia'),
---		   ('Toque arrepiante', 'Magia'),
---		   ('Palavra curativa', 'Cura'),
---		   ('Cura em massa', 'Cura'),
---		   ('Perdição', 'Truque'),
---		   ('Enfeitiçar pessoa', 'Truque'),
---		   ('Ataque de oportunidade', 'Ataque'),
---		   ('Soco sério', 'Ataque');
-
 INSERT INTO public.ataque(
 	habilidade, dano)
 	VALUES ('Ataque de oportunidade', 8),
