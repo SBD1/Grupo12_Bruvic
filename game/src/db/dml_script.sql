@@ -148,7 +148,7 @@ INSERT INTO public.item(
 	VALUES ('adaga', 2, 0.5, 1), 
     ('machadinha', 5, 1, 1), 
     ('tridente', 5, 2, 1), 
-	('mochila', 10, 1),
+	('mochila', 10, 3,1),
     ('besta pesada', 50, 4.5, 1);
 
 INSERT INTO public.itemtipo(
