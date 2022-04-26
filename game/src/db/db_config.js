@@ -23,11 +23,12 @@ const fs = require('fs');
 async function executeSqlFile (fileSource, successMessage) {
     const scriptFile = fs.readFileSync(fileSource).toString();
     const client = await connect();
-    client.query(scriptFile).then(() => {
-        console.log(successMessage)
-        process.exit(0);
-
-    });
+    client.query(scriptFile)
+        .then(() => {
+            console.log(successMessage)
+            process.exit(0);
+        })
+        .catch(e => console.error(e));
 }
 
 async function initDatabase (){
