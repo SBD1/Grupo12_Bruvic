@@ -10,8 +10,10 @@ const optionQuestion = [
         name: optionQuestionId,
         type: 'input',
         message: 'Selecione a sua opção: ',
-        validate: async function( value ) {
-            return true;
+        validate: function( value ) {
+            const check = parseInt(value);
+            return (isNaN(check) || check<1 || check>3) ?
+            'A opção precisa ser um número entre 1 e 3' : true;
         }
     }
 ];
@@ -51,10 +53,6 @@ const getOption = () => {
 };
 
 const handleInput = (inp) => {
-    if (isNaN(inp) || inp<1 || inp>3) {
-        buildMenuWithValidation();
-    }
-
     if (inp == 1) {
         createNewCharacter();
     }
@@ -77,14 +75,6 @@ const repeatablePrints = () => {
     logTab();
     buildGameTitle();
     logTab(3);
-};
-
-const buildMenuWithValidation = () => {
-    repeatablePrints();
-    buildMenuOptions();
-    logTab();
-    console.log('A opção precisa ser um número entre 1 e 3');
-    getOption();
 };
 
 const buildMenu = () => {
