@@ -11,3 +11,8 @@ Repositório para documentação e implementação de projeto para a disciplina 
 ### Professor orientador
 
 - Maurício Serrano
+
+
+### Acesso ao jogo Bruvic
+
+Para ter acesso ao jogo desenvolvido, siga os passos deste [tutorial](./game/README.md).

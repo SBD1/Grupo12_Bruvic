@@ -1,8 +1,8 @@
 const inquirer = require('inquirer');
 const chalk = require('chalk');
 const PersonagensManager = require('../../models/personagens/personagens_manager');
-const NegociantesManager = require('../../models/negociantes/negociantes_manager');
-const BACK_MENU = 'voltar para o menu anterior';
+const PRACA_NEGOCIANTES = 'Praça dos negociantes';
+const VISUALIZAR_MOCHILA = 'Visualizar minha mochila';
 
 module.exports = {
     askPersonagemNome: () => {
@@ -34,10 +34,12 @@ module.exports = {
             type: 'list',
             name: 'selecaoCaminho',
             message: 'Você está na famosa cidade dos ladrões, escolha para onde prosseguir.',
-            choices: ['Praça dos negociantes'],
-            default: 'Praça dos negociantes'
+            choices: [PRACA_NEGOCIANTES, VISUALIZAR_MOCHILA],
+            default: PRACA_NEGOCIANTES
         }
         ];
         return inquirer.prompt(questions);
-    }
+    },
+    PRACA_NEGOCIANTES: PRACA_NEGOCIANTES,
+    VISUALIZAR_MOCHILA: VISUALIZAR_MOCHILA
 };

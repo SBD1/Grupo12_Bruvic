@@ -1,6 +1,8 @@
 const forms  = require('./praca_negociantes_forms');
 const ItemsManager = require("../../models/items/items_manager");
 const NegociantesManager = require('../../models/negociantes/negociantes_manager');
+const chalk = require('chalk');
+const Mochila = require('../../models/mochila');
 
 async function negociantesFlow(personagem){
     const negociantes = await NegociantesManager.getAll().then((res)=>{return res});
@@ -16,24 +18,27 @@ async function negociantesFlow(personagem){
             return negociante.nome === formNegociante.selecaoNegociante
         })[0];
         const itemsNegociante = await ItemsManager.getAllFromNegociante(negocianteSelecionado).then((res) => {return res});
+        console.log(chalk.red(`Você tem ${personagem.montante} moedas para usar.`));
         const formItem = await forms.choiceFromItemsList(negocianteSelecionado, itemsNegociante);
         itemsFlow(formItem, personagem);
     }
 }
 
 async function itemsFlow(formItem, personagem){
+    const clear = require('clear');
+
     if(formItem.selecaoItem == forms.BACK_MENU){
-        const clear = require('clear');
         clear();
         await negociantesFlow(personagem);
     } else {
-        formItem.selecaoItem.vender(personagem);
+        const usoMochila = Mochila.usoMochila(await ItemsManager.getAllFromPersonagem(personagem));
+        await formItem.selecaoItem.vender(personagem, usoMochila);
+        await negociantesFlow(personagem);
     }
 }
 
 module.exports = {
     run: async (personagem) => {
-        console.log("entrou pra rodar o negociantesFlow")
         negociantesFlow(personagem);
     }
 }

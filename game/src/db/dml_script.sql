@@ -12,18 +12,6 @@ Uma criatura, à sua escolha, que você possa ver dentro do alcance recupera uma
 		   ('Ataque de oportunidade', 'Um Ataque de Oportunidade “interrompe” o fluxo do combate; seu personagem aproveita um lapso de defesa de seu oponente e dá um tabefe nele antes que ele venha a agir.', 1), -- Ataque 
 		   ('Soco sério', 'Da série mortalmente séria, o soco sério mata qualquer inimigo instantaneamente', 1); -- Ataque 
 
-
-INSERT INTO public.habilidade_tipo(
-	nome, tipo)
-	VALUES ('Rajada mística', 'Magia'),
-		   ('Toque arrepiante', 'Magia'),
-		   ('Palavra curativa', 'Cura'),
-		   ('Cura em massa', 'Cura'),
-		   ('Perdição', 'Truque'),
-		   ('Enfeitiçar pessoa', 'Truque'),
-		   ('Ataque de oportunidade', 'Ataque'),
-		   ('Soco sério', 'Ataque');
-
 INSERT INTO public.ataque(
 	habilidade, dano)
 	VALUES ('Ataque de oportunidade', 8),
@@ -39,6 +27,11 @@ INSERT INTO public.magia(
 	VALUES ('Rajada mística', 12),
 		   ('Toque arrepiante', 8);
 
+INSERT INTO public.truque(
+	habilidade, stun)
+	VALUES ('Enfeitiçar pessoa', 7),
+		   ('Perdição', 9);
+
 
 -- Insert mapa
 
@@ -53,7 +46,8 @@ INSERT INTO public.bloco (
 	eixo_x, eixo_y, mapa, tipo)
 	VALUES (1, 3, 1, 'cordilheira'), 
     (8, 5, 2, 'floresta'), 
-    (10, 4, 3, 'praia');
+    (10, 4, 3, 'praia'),
+	(7, 2, 1, 'cordilheira');
 
 -- Insert npc
 
@@ -61,12 +55,14 @@ INSERT INTO public.npc (
 	eixo_x, eixo_y, mapa, tipo, vida, nome)
 	VALUES (1, 3, 1, 'negociante', 100, 'Vendedor de armas'), 
     (8, 5, 2, 'viajante', 100, 'Viajante das Brisas'),  
-    (10, 4, 3, 'negociante', 100, 'Dono de Bar');
+    (10, 4, 3, 'negociante', 100, 'Dono de Bar'),
+	(7, 2, 1, 'negociante', 100, 'Vendedor de armaduras');
 
 INSERT INTO public.negociante (
 	npc, montante)
 	VALUES (1, 1000), 
-    (3, 3000);  
+    (3, 3000), 
+	(4, 5000);  
 
 INSERT INTO public.item(nome, preco, peso, negociante) 
     VALUES ('faca mortifera', 600, 1, 1),
@@ -153,12 +149,12 @@ INSERT INTO public.definicaopersonagem(
 -- inserção de armas
 
 INSERT INTO public.item(
-	nome, preco, peso)
-	VALUES ('adaga', 2, 0.5), 
-    ('machadinha', 5, 1), 
-    ('tridente', 5, 2), 
-	('mochila', 10, 1),
-    ('besta pesada', 50, 4.5);
+	nome, preco, peso, negociante)
+	VALUES ('adaga', 2, 0.5, 1), 
+    ('machadinha', 5, 1, 1), 
+    ('tridente', 5, 2, 1), 
+	('mochila', 10, 3, NULL),
+    ('besta pesada', 50, 4.5, 1);
 
 INSERT INTO public.itemtipo(
 	item, tipo)
@@ -177,10 +173,10 @@ INSERT INTO public.equipamento(
 -- inserção de armaduras
 
 INSERT INTO public.item(
-	nome, preco, peso)
-	VALUES ('couro', 10, 5),
-	('peitoral', 400, 10),
-	('cota de malha', 75, 27.5);
+	nome, preco, peso, negociante)
+	VALUES ('couro', 10, 5, 4),
+	('peitoral', 400, 10, 4),
+	('cota de malha', 75, 27.5, 4);
 
 INSERT INTO public.itemtipo(
 	item, tipo)
@@ -197,10 +193,10 @@ INSERT INTO public.equipamento(
 -- inserção de bugiganga
 
 INSERT INTO public.item(
-	nome, preco, peso)
-	VALUES ('mão de goblin', 2, 0.25),
-	('apito', 1, 0.004),
-	('chave velha', 1, 0.002);
+	nome, preco, peso, negociante)
+	VALUES ('mão de goblin', 2, 0.25, 4),
+	('apito', 1, 0.004, 4),
+	('chave velha', 1, 0.002, 4);
 
 INSERT INTO public.itemtipo(
 	item, tipo)
