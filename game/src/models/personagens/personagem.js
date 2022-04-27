@@ -2,7 +2,7 @@ module.exports = class Personagem  {
     constructor(id, vida, nome, destreza, forca, 
                 constituicao, carisma, sabedoria, inteligencia, montante,
                 raca=null, classe=null, classe_de_armadura=null, experiencia=null, 
-                nivel=null){
+                nivel=null, habilidades=[]){
 
         // mandatory fields
         this.id = id
@@ -24,10 +24,18 @@ module.exports = class Personagem  {
         this.raca = raca
         this.classe = classe
 
+        this.habilidades = habilidades 
+
     }
 
     setMochilaInfo(capacidadeMochila=null, idMochila=null){
         this.capacidadeMochila = capacidadeMochila
         this.idMochila = idMochila
+    }
+
+    setNewHabilidade(habilidade){
+        const isNewHabilidade = this.habilidades.filter(_habilidade => habilidade.nome === _habilidade.nome).length === 0;
+        if(isNewHabilidade) this.habilidades.push(habilidade)
+       
     }
 }
