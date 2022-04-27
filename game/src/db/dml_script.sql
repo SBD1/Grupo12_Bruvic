@@ -27,6 +27,11 @@ INSERT INTO public.magia(
 	VALUES ('Rajada mística', 12),
 		   ('Toque arrepiante', 8);
 
+INSERT INTO public.truque(
+	habilidade, stun)
+	VALUES ('Enfeitiçar pessoa', 7),
+		   ('Perdição', 9);
+
 
 -- Insert mapa
 
