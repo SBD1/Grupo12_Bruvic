@@ -33,7 +33,7 @@ module.exports = class Item  {
             });
             client.release();
             console.log(
-                chalk.green(`Você adquiriu o item ${this.nome} com sucesso e foi transferido para sua mochila.\n\n\n\n`)
+                chalk.green(`Você adquiriu o item ${this.nome} com sucesso e ele transferido para sua mochila.\n\n\n\n`)
             );
         } else {
             console.log(
