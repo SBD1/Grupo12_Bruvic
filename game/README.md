@@ -16,7 +16,7 @@ $ git clone git@github.com:SBD1/Grupo12_Bruvic.git
 $ make build
 ```
 
-Nas outras execuções basta rodar:
+Nas outras execuções basta rodar. **Este terminal deverá ficar sendo executado para rodar os outros comandos a seguir**:
 
 ```
 $ make up
