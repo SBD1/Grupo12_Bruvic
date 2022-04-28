@@ -8,13 +8,9 @@ CREATE TABLE IF NOT EXISTS Habilidade (
 
 CREATE TABLE IF NOT EXISTS Habilidade_Tipo (
     nome VARCHAR PRIMARY KEY REFERENCES Habilidade (nome) ON DELETE CASCADE,
-    tipo VARCHAR NOT NULL CHECK (tipo in ('Ataque', 'Cura', 'Truque', 'Magia', ''))
+    tipo VARCHAR NOT NULL CHECK (tipo in ('Cura', 'Truque', 'Magia', ''))
 ); 
 
-CREATE TABLE IF NOT EXISTS Ataque (
-    habilidade VARCHAR PRIMARY KEY REFERENCES Habilidade (nome) ON DELETE CASCADE,
-    dano INTEGER NOT NULL
-); 
 
 CREATE TABLE IF NOT EXISTS Cura (
     habilidade VARCHAR PRIMARY KEY REFERENCES Habilidade (nome) ON DELETE CASCADE,
@@ -263,59 +259,13 @@ CREATE TRIGGER cria_habilidade_trigger
 AFTER INSERT ON Habilidade 
 FOR EACH ROW EXECUTE PROCEDURE cria_habilidade();
 
-
--- ======================================= CHECK ATAQUE  ===========================================================================================
-
-CREATE OR REPLACE FUNCTION cria_ataque() RETURNS trigger AS $cria_ataque$
-DECLARE 
-    curas INTEGER;
-    truques INTEGER;
-    magias INTEGER; 
-BEGIN 
-    curas := COUNT(*) FROM Cura where habilidade = new.habilidade;
-    IF curas > 0 THEN 
-        RAISE EXCEPTION 'Já existe uma cura com essa referência de habilidade!';
-        RETURN NULL;
-    END IF; 
-
-    truques := COUNT(*) FROM Truque WHERE habilidade = new.habilidade; 
-    IF truques > 0 THEN 
-        RAISE EXCEPTION 'Já existe um truque com essa referência de habilidade!';
-        RETURN NULL;
-    END IF; 
-    
-    magias := COUNT(*) FROM Magia WHERE habilidade = new.habilidade; 
-    IF magias > 0 THEN
-        RAISE EXCEPTION 'Já existe uma magia com essa referência de habilidade!'; 
-        RETURN NULL;
-    END IF;
-
-    UPDATE Habilidade_Tipo 
-    SET tipo = 'Ataque'
-    WHERE nome = new.habilidade;
-
-    return new; 
-END;
-
-$cria_ataque$ LANGUAGE plpgsql;
-CREATE TRIGGER cria_ataque_trigger
-BEFORE INSERT ON Ataque
-FOR EACH ROW EXECUTE PROCEDURE cria_ataque();
-
 -- ======================================= CHECK CURA  ===========================================================================================
 
 CREATE OR REPLACE FUNCTION cria_cura() RETURNS trigger AS $cria_cura$
 DECLARE 
-    ataques INTEGER;
     truques INTEGER;
     magias INTEGER; 
 BEGIN 
-    ataques := COUNT(*) FROM Ataque where habilidade = new.habilidade;
-    IF ataques > 0 THEN 
-        RAISE EXCEPTION 'Já existe um ataque com essa referência de habilidade!';
-        RETURN NULL;
-    END IF; 
-
     truques := COUNT(*) FROM Truque WHERE habilidade = new.habilidade; 
     IF truques > 0 THEN 
         RAISE EXCEPTION 'Já existe um truque com essa referência de habilidade!';
@@ -346,16 +296,9 @@ FOR EACH ROW EXECUTE PROCEDURE cria_cura();
 
 CREATE OR REPLACE FUNCTION cria_truque() RETURNS trigger AS $cria_truque$
 DECLARE 
-    ataques INTEGER;
     curas INTEGER;
     magias INTEGER; 
 BEGIN 
-    ataques := COUNT(*) FROM Ataque where habilidade = new.habilidade;
-    IF ataques > 0 THEN 
-        RAISE EXCEPTION 'Já existe um ataque com essa referência de habilidade!';
-        RETURN NULL;
-    END IF; 
-
     curas := COUNT(*) FROM Cura where habilidade = new.habilidade;
     IF curas > 0 THEN 
         RAISE EXCEPTION 'Já existe uma cura com essa referência de habilidade!';
@@ -386,16 +329,9 @@ FOR EACH ROW EXECUTE PROCEDURE cria_truque();
 
 CREATE OR REPLACE FUNCTION cria_magia() RETURNS trigger AS $cria_magia$
 DECLARE 
-    ataques INTEGER;
     curas INTEGER;
     truques INTEGER;
 BEGIN 
-    ataques := COUNT(*) FROM Ataque where habilidade = new.habilidade;
-    IF ataques > 0 THEN 
-        RAISE EXCEPTION 'Já existe um ataque com essa referência de habilidade!';
-        RETURN NULL;
-    END IF; 
-
     curas := COUNT(*) FROM Cura where habilidade = new.habilidade;
     IF curas > 0 THEN 
         RAISE EXCEPTION 'Já existe uma cura com essa referência de habilidade!';
