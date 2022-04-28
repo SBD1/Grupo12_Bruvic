@@ -3,6 +3,7 @@ const inquirer = require('inquirer');
 
 var characterName;
 var characterRace;
+var characterClass;
 
 const nameQuestionId = 'nameOpt';
 const nameQuestion = [
@@ -15,7 +16,7 @@ const nameQuestion = [
             const check = newVal.length;
             return check<1 ? 'O nome não pode ser vazio' : true; 
         }
-    }
+    },
 ];
 
 const raceQuestionId = 'raceOpt';
@@ -28,6 +29,20 @@ const raceQuestion = [
             const check = parseInt(value);
             return (isNaN(check) || check<1 || check>3) ?
             'A opção precisa ser um número entre 1 e 3' : true;
+        }
+    }
+];
+
+const classQuestionId = 'classOpt';
+const classQuestion = [
+    {
+        name: classQuestionId,
+        type: 'input',
+        message: 'Escolha a classe do seu personagem: ',
+        validate: async function (value) {
+            const check = parseInt(value);
+            return (isNaN(check) || check<1 || check>4) ?
+            'A opção precisa ser um número entre 1 e 4' : true;
         }
     }
 ];
@@ -55,27 +70,22 @@ const capitalize = (str) => (str.charAt(0).toUpperCase() + str.slice(1));
 const getCharacterName = async () => {
     const answer = await inquirer.prompt(nameQuestion);
     characterName = capitalize(answer[nameQuestionId].trim());
+    
 };
 
-const chooseRace = () => {
-    inquirer.prompt(raceQuestion).then((answer) => {
-        const opt = parseInt(answer[raceQuestionId]);
-        var race;
-        if (opt == 1) {
-            race = 'Guerreiro';
-        } else if (opt == 2) {
-            race = 'Mago';
-        } else {
-            race = 'Clerigo';
-        }
+const chooseRace = async () => {
+    const answer = await inquirer.prompt(raceQuestion);
+    const opt = parseInt(answer[raceQuestionId]);
+    var race;
 
-        characterRace = race;
-        console.log(characterRace);
-    });
-}
+    if (opt == 1)      race = 'Guerreiro';
+    else if (opt == 2) race = 'Mago';
+    else               race = 'Clerigo';
 
-const getRace = () => {
-    // clear();
+    characterRace = race;
+};
+
+const getRace = async () => {
     console.log();
     console.log();
     console.log("------ Selecione sua raça -------");
@@ -83,21 +93,44 @@ const getRace = () => {
     console.log('2) Mago');
     console.log('3) Clérigo');
     console.log();
-    chooseRace();
+    await chooseRace();
 };
 
-const getCharClass = () => {
+const chooseClass = async () => {
+    const answer = await inquirer.prompt(classQuestion);
+    const opt = parseInt(answer[classQuestionId]);
+    var charClass;
 
+    if (opt == 1)      charClass = 'Humano';
+    else if (opt == 2) charClass = 'Anao';
+    else if (opt == 3) charClass = 'MeioElfo';
+    else               charClass = 'Draconato';
+
+    characterClass = charClass;
+}
+
+const getCharClass = async () => {
+    console.log();
+    console.log();
+    console.log("------ Selecione sua classe -----");
+    console.log('1) Humano');
+    console.log('2) Anão');
+    console.log('3) Meio-Elfo');
+    console.log('4) Draconato');
+    console.log();
+    await chooseClass();
 };
-
-const getAttributes = () => {};
 
 const createNewCharacter = async () => {
     buildTitle();
     console.log("----- Criação de personagem -----");
     console.log();
-    getCharacterName();
-    getRace();
+    await getCharacterName();
+    await getRace();
+    await getCharClass();
+    console.log('O nome do seu personagem é:   ' + characterName);
+    console.log('A raça do seu personagem é:   ' + characterRace);
+    console.log('A classe do seu personagem é: ' + characterClass);
 };
 
 module.exports = createNewCharacter;
