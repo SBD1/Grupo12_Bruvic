@@ -145,18 +145,21 @@ CREATE TABLE IF NOT EXISTS Clerigo (
 );
 
 CREATE TABLE IF NOT EXISTS MagoMagia (
-    mago INTEGER PRIMARY KEY REFERENCES Mago (personagem),
-    magia VARCHAR REFERENCES Magia (habilidade)
+    mago INTEGER REFERENCES Mago (personagem),
+    magia VARCHAR REFERENCES Magia (habilidade),
+    PRIMARY KEY (mago, magia)
 );
 
 CREATE TABLE IF NOT EXISTS ClerigoTruque (
    clerigo INTEGER REFERENCES Clerigo (personagem),
-   truque VARCHAR REFERENCES Truque (habilidade)
+   truque VARCHAR REFERENCES Truque (habilidade),
+   PRIMARY KEY (clerigo, truque)
 );
 
 CREATE TABLE IF NOT EXISTS ClerigoCura (
     clerigo INTEGER REFERENCES Clerigo (personagem),
-    cura VARCHAR REFERENCES Cura (habilidade)
+    cura VARCHAR REFERENCES Cura (habilidade),
+    PRIMARY KEY (clerigo, cura)
 );
 
 CREATE TABLE IF NOT EXISTS DefinicaoPersonagem(
