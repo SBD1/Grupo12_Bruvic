@@ -8,14 +8,8 @@ INSERT INTO public.habilidade(
 Uma criatura, à sua escolha, que você possa ver dentro do alcance recupera uma quantidade de pontos de vida.', 1), -- Cura 
 		   ('Cura em massa', 'À medida que você brada palavras de restauração, até seis criaturas, à sua escolha, que você possa ver, dentro do alcance, recuperam uma quantidade de pontos de vida', 1), -- Cura
 		   ('Perdição', ' Até três criaturas, à sua escolha, que você possa ver dentro do alcance, devem realizar um teste de resistência de Carisma, se o alvo falhar, ele tem desvantagens em ataque e resistência.', 1), -- Truque
-		   ('Enfeitiçar pessoa', 'Você tenta enfeitiçar um humanoide que você possa ver dentro do alcance. Ele deve realizar um teste de resistência de Sabedoria, se ele falhar, ele obedece as suas ordens durante um tempo.', 1), -- Truque
-		   ('Ataque de oportunidade', 'Um Ataque de Oportunidade “interrompe” o fluxo do combate; seu personagem aproveita um lapso de defesa de seu oponente e dá um tabefe nele antes que ele venha a agir.', 1), -- Ataque 
-		   ('Soco sério', 'Da série mortalmente séria, o soco sério mata qualquer inimigo instantaneamente', 1); -- Ataque 
+		   ('Enfeitiçar pessoa', 'Você tenta enfeitiçar um humanoide que você possa ver dentro do alcance. Ele deve realizar um teste de resistência de Sabedoria, se ele falhar, ele obedece as suas ordens durante um tempo.', 1); -- Truque 
 
-INSERT INTO public.ataque(
-	habilidade, dano)
-	VALUES ('Ataque de oportunidade', 8),
-		   ('Soco sério', 42);
 
 INSERT INTO public.cura(
 	habilidade, recuperacao)
