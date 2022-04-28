@@ -1,5 +1,6 @@
 const clear = require('clear');
 const inquirer = require('inquirer');
+const createAttributes = require('./createAttributes');
 
 var characterName;
 var characterRace;
@@ -128,9 +129,7 @@ const createNewCharacter = async () => {
     await getCharacterName();
     await getRace();
     await getCharClass();
-    console.log('O nome do seu personagem é:   ' + characterName);
-    console.log('A raça do seu personagem é:   ' + characterRace);
-    console.log('A classe do seu personagem é: ' + characterClass);
+    createAttributes(characterName, characterRace, characterClass);
 };
 
 module.exports = createNewCharacter;
