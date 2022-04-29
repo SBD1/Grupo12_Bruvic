@@ -93,4 +93,60 @@ module.exports = class PersonagensManager {
        personagem.setNewHabilidade(habilidade); 
        return personagem;
     }
+
+    static async savePersonagem(values){
+        const client = await db.connect();
+        const { 
+            vida, 
+            experiencia,
+            nivel,
+            nome,
+            destreza,
+            forca,
+            constituicao,
+            carisma,
+            sabedoria,
+            inteligencia,
+            classe_de_armadura,
+            montante,
+        } = values; 
+        const id = Math.floor(Math.random()*1000000)
+        const saveQuery = `INSERT INTO Personagem(
+                                                    id,
+                                                    vida,
+                                                    experiencia,
+                                                    nivel,
+                                                    nome,
+                                                    destreza,
+                                                    forca,
+                                                    constituicao,
+                                                    carisma,
+                                                    sabedoria,
+                                                    inteligencia,
+                                                    classe_de_armadura,
+                                                    montante) 
+                                                    VALUES                                                   
+                                                    (
+                                                     ${id},
+                                                     ${vida},
+                                                     ${experiencia},
+                                                     ${nivel},
+                                                     '${nome}',
+                                                     ${destreza},
+                                                     ${forca},
+                                                     ${constituicao},
+                                                     ${carisma},
+                                                     ${sabedoria},
+                                                     ${inteligencia},
+                                                     ${classe_de_armadura},
+                                                     ${montante});`;
+     
+      await client.query(saveQuery);
+    
+       client.release();
+
+        const { raca, classe } = values; 
+        const saveDefinicaoPersonagemQuery = `INSERT INTO DefinicaoPersonagem(personagem, raca, classe) VALUES (${id}, '${raca}','${classe}')`;
+        await client.query(saveDefinicaoPersonagemQuery);
+    }
 }
