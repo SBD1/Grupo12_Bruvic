@@ -318,8 +318,8 @@ const createAttributes = async (charName, charClass, charRace) => {
     };
 
     await inquirer.prompt(contBuffQuestion);
-    await PersonagensManager.savePersonagem(values);
-   // chamar set de habilidades
+    const personagem = await PersonagensManager.savePersonagem(values);
+    return personagem;
 };
 
 module.exports = createAttributes;
