@@ -88,6 +88,14 @@ CREATE TABLE IF NOT EXISTS Personagem (
     montante FLOAT NOT NULL
 );
 
+CREATE TABLE IF NOT EXISTS PersonagemLocalizacao (
+    personagem INTEGER PRIMARY KEY REFERENCES Personagem (id) ON DELETE CASCADE
+    eixo_x INTEGER,
+    eixo_y INTEGER,
+    mapa INTEGER,
+    FOREIGN KEY (eixo_x, eixo_y, mapa) REFERENCES Bloco (eixo_x, eixo_y, mapa)
+)
+
 CREATE TABLE IF NOT EXISTS Humano (
     personagem INTEGER PRIMARY KEY REFERENCES Personagem (id) ON DELETE CASCADE,
     bonus_destreza SMALLINT DEFAULT 1,
@@ -364,6 +372,7 @@ FOR EACH ROW EXECUTE PROCEDURE cria_magia();
 CREATE OR REPLACE FUNCTION cria_personagem() RETURNS trigger AS $cria_personagem$
 BEGIN
     INSERT INTO public.definicaopersonagem(personagem) VALUES (new.id);
+    INSERT INTO public.PersonagemLocalizacao(personagem, eixo_x, eixo_y, mapa) VALUES (new.id, 0, 0, 0);
     RAISE NOTICE 'Personagem criado com sucesso!';
     RETURN NEW;
 END;
