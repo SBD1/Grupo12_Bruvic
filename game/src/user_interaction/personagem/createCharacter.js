@@ -1,10 +1,21 @@
-const clear = require('clear');
 const inquirer = require('inquirer');
 const createAttributes = require('./createAttributes');
+const { buildGameTitle } = require('../common'); 
 
 var characterName;
 var characterRace;
 var characterClass;
+
+const createNewCharacter = async () => {
+    buildGameTitle();
+    console.log("----- Criação de personagem -----");
+    console.log();
+    await getCharacterName();
+    await getRace();
+    await getCharClass();
+    const personagem = await createAttributes(characterName, characterRace, characterClass);
+    return personagem;
+};
 
 const nameQuestionId = 'nameOpt';
 const nameQuestion = [
@@ -48,23 +59,7 @@ const classQuestion = [
     }
 ];
 
-const buildTitle = () => {
-    clear();
-    console.log();
-    console.log();
-    console.log("▀█████████▄     ▄████████ ███    █▄   ▄█    █▄   ▄█   ▄████████");
-    console.log("  ███    ███   ███    ███ ███    ███ ███    ███ ███  ███    ███");
-    console.log("  ███    ███   ███    ███ ███    ███ ███    ███ ███▌ ███    █▀");
-    console.log(" ▄███▄▄▄██▀   ▄███▄▄▄▄██▀ ███    ███ ███    ███ ███▌ ███ ");
-    console.log("▀▀███▀▀▀██▄  ▀▀███▀▀▀▀▀   ███    ███ ███    ███ ███▌ ███ ");
-    console.log("  ███    ██▄ ▀███████████ ███    ███ ███    ███ ███  ███    █▄");
-    console.log("  ███    ███   ███    ███ ███    ███ ███    ███ ███  ███    ███");
-    console.log("▄█████████▀    ███    ███ ████████▀   ▀██████▀  █▀   ████████▀")
-    console.log("               ███    ███");   
-    console.log();
-    console.log();
-    console.log();
-};
+
 
 const capitalize = (str) => (str.charAt(0).toUpperCase() + str.slice(1));
 
@@ -122,14 +117,6 @@ const getCharClass = async () => {
     await chooseClass();
 };
 
-const createNewCharacter = async () => {
-    buildTitle();
-    console.log("----- Criação de personagem -----");
-    console.log();
-    await getCharacterName();
-    await getRace();
-    await getCharClass();
-    createAttributes(characterName, characterRace, characterClass);
-};
+
 
 module.exports = createNewCharacter;

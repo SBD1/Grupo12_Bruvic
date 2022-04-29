@@ -1,8 +1,12 @@
-const clear = require("clear");
-const { exit } = require("process");
-const inquirer = require("inquirer");
-const createNewCharacter = require("../personagem/createCharacter");
+const clear = require('clear');
+const { exit } = require('process');
+const inquirer = require('inquirer');
+const createNewCharacter = require('../personagem/createCharacter');
+const loadCharacter = require('../personagem/loadCharacter');
+const addHabilidadeToPersonagem = require('../habilidades/addHabilidadeToPersonagem'); 
+const { buildGameTitle } = require('../common'); 
 const navigation = require("../mapa/renderMapa");
+
 
 const optionQuestionId = "mainMenuOpt";
 
@@ -25,26 +29,8 @@ const cleanScreen = () => {
   console.log();
 };
 
-const buildGameTitle = () => {
-  console.log(
-    "▀█████████▄     ▄████████ ███    █▄   ▄█    █▄   ▄█   ▄████████"
-  );
-  console.log(
-    "  ███    ███   ███    ███ ███    ███ ███    ███ ███  ███    ███"
-  );
-  console.log("  ███    ███   ███    ███ ███    ███ ███    ███ ███▌ ███    █▀");
-  console.log(" ▄███▄▄▄██▀   ▄███▄▄▄▄██▀ ███    ███ ███    ███ ███▌ ███ ");
-  console.log("▀▀███▀▀▀██▄  ▀▀███▀▀▀▀▀   ███    ███ ███    ███ ███▌ ███ ");
-  console.log("  ███    ██▄ ▀███████████ ███    ███ ███    ███ ███  ███    █▄");
-  console.log(
-    "  ███    ███   ███    ███ ███    ███ ███    ███ ███  ███    ███"
-  );
-  console.log("▄█████████▀    ███    ███ ████████▀   ▀██████▀  █▀   ████████▀");
-  console.log("               ███    ███");
-};
-
-const logTab = (line = 1) => {
-  for (var i = 0; i < line; i++) console.log();
+const logTab = (line=1) => {
+    for (var i=0; i<line; i++) console.log();
 };
 
 const buildMenuOptions = () => {
@@ -62,7 +48,9 @@ const getOption = () => {
 
 const handleInput = (inp) => {
   if (inp == 1) {
-    createNewCharacter();
+    const newPersonagem = await createNewCharacter();
+    const personagemWithHabilidade = await addHabilidadeToPersonagem(newPersonagem); 
+    console.log(personagemWithHabilidade);
     cleanScreen();
     console.log("LÁ VAMOS NÓS GRANDE AVENTUREIRO");
     console.log("aqui explicação da história");
@@ -70,8 +58,7 @@ const handleInput = (inp) => {
   }
 
   if (inp == 2) {
-    console.log("2");
-    // chooseCharacter();
+    loadCharacter();
   }
 
   if (inp == 3) {
