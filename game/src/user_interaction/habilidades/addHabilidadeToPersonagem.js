@@ -5,7 +5,6 @@ const inquirer = require('inquirer');
 const addHabilidadeToPersonagem = async (personagem) => {
     buildGameTitle(); 
     const allHabilidades = await getHabilidadesByClasse(personagem.classe); 
-    console.log(allHabilidades);
     const habilidadeSelected = await buildHabilidadeSelector(allHabilidades);
     await saveHabilidadeToPersonagem(habilidadeSelected, personagem); 
     return personagem;
