@@ -208,5 +208,22 @@ module.exports = class PersonagensManager {
         const { raca, classe } = values; 
         const saveDefinicaoPersonagemQuery = `INSERT INTO DefinicaoPersonagem(personagem, raca, classe) VALUES (${id}, '${raca}','${classe}')`;
         await client.query(saveDefinicaoPersonagemQuery);
+        return new Personagem(
+            id, 
+            vida, 
+            nome, 
+            destreza,
+            forca, 
+            constituicao,
+            carisma, 
+            sabedoria, 
+            inteligencia, 
+            montante,
+            raca, 
+            classe, 
+            classe_de_armadura, 
+            experiencia, 
+            nivel
+        );
     }
 }
