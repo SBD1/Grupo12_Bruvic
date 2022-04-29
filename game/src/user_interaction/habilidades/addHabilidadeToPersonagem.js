@@ -60,7 +60,7 @@ const saveHabilidadeToPersonagem = async (habilidade, personagem) => {
         await HabilidadeManager.saveToClerigoCura(habilidade, personagem); 
     }
     if(habilidade.tipo === 'Truque'){
-        await HabilidadeManager.saveToMagoMagia(habilidade, personagem); 
+        await HabilidadeManager.saveToClerigoTruque(habilidade, personagem); 
     }
     personagem.setNewHabilidade(habilidade); 
 }
