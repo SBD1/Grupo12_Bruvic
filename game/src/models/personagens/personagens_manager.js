@@ -1,6 +1,7 @@
 const db = require("../../db/db_config");
 const Personagem = require("./personagem");
 const HabilidadeManager = require('../habilidade/habilidade_manager');
+const PersonagemLocalizacao = require("./personagemLocalizacao");
 
 module.exports = class PersonagensManager {
     static async getAllPersonagem(){
@@ -230,7 +231,14 @@ module.exports = class PersonagensManager {
     static async getPersonagemLocalizacao(personagem){
         const client = await db.connect();
         const queryText = `SELECT * FROM PersonagemLocalizacao WHERE personagem = ${personagem.id};`
-        const personagemLocalizacao = await client.query(queryText);
-        console.log(personagemLocalizacao);
+        const queryResult = await client.query(queryText);
+        const personagemLocalizacao = queryResult.rows[0];
+        client.release();
+        return new PersonagemLocalizacao(
+            personagemLocalizacao.personagem,
+            personagemLocalizacao.eixo_x,
+            personagemLocalizacao.eixo_y,
+            personagemLocalizacao.mapa
+        );
     }
 }

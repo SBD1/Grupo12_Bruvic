@@ -52,7 +52,9 @@ const handleInput = async (inp) => {
     const personagemWithHabilidade = await addHabilidadeToPersonagem(newPersonagem); 
     console.log(personagemWithHabilidade);
     // cleanScreen();
-    await PersonagensManager.getPersonagemLocalizacao(newPersonagem);
+    const personagemLocalizacao = await PersonagensManager.getPersonagemLocalizacao(newPersonagem);
+    console.log("AAAA");
+    console.log(personagemLocalizacao);
     console.log("LÁ VAMOS NÓS GRANDE AVENTUREIRO");
     console.log("aqui explicação da história");
 
