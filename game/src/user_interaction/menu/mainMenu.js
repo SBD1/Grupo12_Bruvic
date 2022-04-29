@@ -46,7 +46,7 @@ const getOption = () => {
   });
 };
 
-const handleInput = (inp) => {
+const handleInput = async (inp) => {
   if (inp == 1) {
     const newPersonagem = await createNewCharacter();
     const personagemWithHabilidade = await addHabilidadeToPersonagem(newPersonagem); 
