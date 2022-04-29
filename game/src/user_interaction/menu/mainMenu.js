@@ -1,12 +1,11 @@
-const clear = require('clear');
-const { exit } = require('process');
-const inquirer = require('inquirer');
-const createNewCharacter = require('../personagem/createCharacter');
-const loadCharacter = require('../personagem/loadCharacter');
-const addHabilidadeToPersonagem = require('../habilidades/addHabilidadeToPersonagem'); 
-const { buildGameTitle } = require('../common'); 
+const clear = require("clear");
+const { exit } = require("process");
+const inquirer = require("inquirer");
+const createNewCharacter = require("../personagem/createCharacter");
+const loadCharacter = require("../personagem/loadCharacter");
+const addHabilidadeToPersonagem = require("../habilidades/addHabilidadeToPersonagem");
+const { buildGameTitle, cleanScreen } = require("../common");
 const navigation = require("../mapa/renderMapa");
-
 
 const optionQuestionId = "mainMenuOpt";
 
@@ -24,13 +23,8 @@ const optionQuestion = [
   },
 ];
 
-const cleanScreen = () => {
-  clear();
-  console.log();
-};
-
-const logTab = (line=1) => {
-    for (var i=0; i<line; i++) console.log();
+const logTab = (line = 1) => {
+  for (var i = 0; i < line; i++) console.log();
 };
 
 const buildMenuOptions = () => {
@@ -46,15 +40,22 @@ const getOption = () => {
   });
 };
 
-const handleInput = (inp) => {
+const handleInput = async (inp) => {
   if (inp == 1) {
-    const newPersonagem = await createNewCharacter();
-    const personagemWithHabilidade = await addHabilidadeToPersonagem(newPersonagem); 
-    console.log(personagemWithHabilidade);
+    // const newPersonagem = await createNewCharacter();
+    // const personagemWithHabilidade = await addHabilidadeToPersonagem(
+    //   newPersonagem
+    // );
+
+    const personagem = {
+      mapa: 1,
+      eixo_y: 6,
+      eixo_x: 0,
+    };
     cleanScreen();
     console.log("LÁ VAMOS NÓS GRANDE AVENTUREIRO");
     console.log("aqui explicação da história");
-    navigation();
+    navigation(personagem);
   }
 
   if (inp == 2) {
