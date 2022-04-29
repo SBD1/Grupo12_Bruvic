@@ -6,6 +6,17 @@ var characterName;
 var characterRace;
 var characterClass;
 
+const createNewCharacter = async () => {
+    buildGameTitle();
+    console.log("----- Criação de personagem -----");
+    console.log();
+    await getCharacterName();
+    await getRace();
+    await getCharClass();
+    const personagem = await createAttributes(characterName, characterRace, characterClass);
+    return personagem;
+};
+
 const nameQuestionId = 'nameOpt';
 const nameQuestion = [
     {
@@ -106,14 +117,6 @@ const getCharClass = async () => {
     await chooseClass();
 };
 
-const createNewCharacter = async () => {
-    buildGameTitle();
-    console.log("----- Criação de personagem -----");
-    console.log();
-    await getCharacterName();
-    await getRace();
-    await getCharClass();
-    createAttributes(characterName, characterRace, characterClass);
-};
+
 
 module.exports = createNewCharacter;

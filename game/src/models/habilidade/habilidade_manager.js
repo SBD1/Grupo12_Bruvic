@@ -31,4 +31,13 @@ module.exports = class HabilidadeManager {
       habilidade.tipo
     ));
   }
+
+  static saveToClerigoTruque(habilidade, personagem){
+  }
+
+  static saveToClerigoCura(habilidade, personagem){
+  }
+
+  static saveToMagoMagia(habilidade, personagem){
+  }
 }

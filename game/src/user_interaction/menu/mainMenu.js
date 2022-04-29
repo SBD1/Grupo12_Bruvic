@@ -3,6 +3,7 @@ const { exit } = require('process');
 const inquirer = require('inquirer');
 const createNewCharacter = require('../personagem/createCharacter');
 const loadCharacter = require('../personagem/loadCharacter');
+const addHabilidadeToPersonagem = require('../habilidades/addHabilidadeToPersonagem'); 
 const { buildGameTitle } = require('../common'); 
 
 
@@ -43,9 +44,11 @@ const getOption = () => {
     });
 };
 
-const handleInput = (inp) => {
+const handleInput = async (inp) => {
     if (inp == 1) {
-        createNewCharacter();
+        const newPersonagem = await createNewCharacter();
+        const personagemWithHabilidade = await addHabilidadeToPersonagem(newPersonagem); 
+        console.log(personagemWithHabilidade);
     }
 
     if (inp == 2) {

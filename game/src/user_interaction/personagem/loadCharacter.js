@@ -15,7 +15,7 @@ const loadCharacter = async () => {
 
     
 const buildPersonagemSelection = async (personagens) => {
-    console.log('NOME - CLASSE - RAÇA - NÍVEL');
+    console.log('Personagens salvos no banco de dados.');
     console.log();
     showPersonagemOptions(personagens); 
     console.log();
