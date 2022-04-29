@@ -32,12 +32,25 @@ module.exports = class HabilidadeManager {
     ));
   }
 
-  static saveToClerigoTruque(habilidade, personagem){
+  static async saveToClerigoTruque(habilidade, personagem){
+    const client = await db.connect();
+    const insertQuery = `INSERT INTO ClerigoTruque(clerigo, truque) VALUES (${personagem.id}, '${habilidade.nome}');`; 
+    await client.query(insertQuery);
+    client.release();
   }
 
-  static saveToClerigoCura(habilidade, personagem){
+  static async saveToClerigoCura(habilidade, personagem){
+    const client = await db.connect();
+    const insertQuery = `INSERT INTO ClerigoCura(clerigo, cura) VALUES (${personagem.id}, '${habilidade.nome}');`; 
+    await client.query(insertQuery);
+    client.release();
   }
 
-  static saveToMagoMagia(habilidade, personagem){
+  static async saveToMagoMagia(habilidade, personagem){
+    const client = await db.connect();
+    const insertQuery = `INSERT INTO MagoMagia (mago, magia) VALUES (${personagem.id}, '${habilidade.nome}');`; 
+    await client.query(insertQuery);
+    client.release();
+
   }
 }
