@@ -90,44 +90,44 @@ CREATE TABLE IF NOT EXISTS Personagem (
 
 CREATE TABLE IF NOT EXISTS Humano (
     personagem INTEGER PRIMARY KEY REFERENCES Personagem (id) ON DELETE CASCADE,
-    bonus_destreza SMALLINT,
-    bonus_forca SMALLINT,
-    bonus_constituicao SMALLINT,
-    bonus_carisma SMALLINT,
-    bonus_sabedoria SMALLINT,
-    bonus_inteligencia SMALLINT,
+    bonus_destreza SMALLINT DEFAULT 1,
+    bonus_forca SMALLINT DEFAULT 1,
+    bonus_constituicao SMALLINT DEFAULT 1,
+    bonus_carisma SMALLINT DEFAULT 1,
+    bonus_sabedoria SMALLINT DEFAULT 1,
+    bonus_inteligencia SMALLINT DEFAULT 1,
     CONSTRAINT checa_atributos_humano 
     CHECK (bonus_destreza + bonus_forca + bonus_constituicao + bonus_carisma + bonus_sabedoria + bonus_inteligencia = 6)
 );
 
 CREATE TABLE IF NOT EXISTS Anao (
     personagem INTEGER PRIMARY KEY REFERENCES Personagem (id) ON DELETE CASCADE,
-    bonus_forca SMALLINT,
-    bonus_constituicao SMALLINT,
+    bonus_forca SMALLINT DEFAULT 3,
+    bonus_constituicao SMALLINT DEFAULT 3,
     CONSTRAINT checa_atributos_anao 
     CHECK (bonus_forca + bonus_constituicao = 6)
 );
 
 CREATE TABLE IF NOT EXISTS MeioElfo (
     personagem INTEGER PRIMARY KEY REFERENCES Personagem (id) ON DELETE CASCADE,
-    bonus_sabedoria SMALLINT,
-    bonus_destreza SMALLINT,
+    bonus_sabedoria SMALLINT DEFAULT 3,
+    bonus_destreza SMALLINT DEFAULT 3,
     CONSTRAINT checa_atributos_meio_elfo 
     CHECK (bonus_sabedoria + bonus_destreza = 6)
 );
 
 CREATE TABLE IF NOT EXISTS Draconato (
     personagem INTEGER PRIMARY KEY REFERENCES Personagem (id) ON DELETE CASCADE,
-    bonus_carisma SMALLINT,
-    bonus_inteligencia SMALLINT,
+    bonus_carisma SMALLINT DEFAULT 3,
+    bonus_inteligencia SMALLINT DEFAULT 3,
     CONSTRAINT checa_atributos_draconato 
     CHECK (bonus_carisma + bonus_inteligencia = 6)
 );
 
 CREATE TABLE IF NOT EXISTS Guerreiro (
     personagem INTEGER PRIMARY KEY REFERENCES Personagem (id) ON DELETE CASCADE,
-    bonus_classe_armadura SMALLINT,
-    bonus_ataque SMALLINT,
+    bonus_classe_armadura SMALLINT DEFAULT 4,
+    bonus_ataque SMALLINT DEFAULT 4,
     CONSTRAINT checa_atributos_guerreiro 
     CHECK (bonus_classe_armadura + bonus_ataque = 8)
 );
