@@ -12,7 +12,7 @@ const renderMapa = (render) => {
   console.log("");
 };
 
-const handleBlocos = (blocos, mapa) => {
+const handleBlocos = (blocos, mapa, personagem) => {
   var render = Array(mapa.altura + 1).fill(Array());
 
   blocos.forEach((bloco) => {
@@ -27,10 +27,7 @@ const handleBlocos = (blocos, mapa) => {
         ];
         break;
       case "trap":
-        render[bloco.eixo_y] = [
-          ...render[bloco.eixo_y],
-          chalk.bgWhiteBright(" "),
-        ];
+        render[bloco.eixo_y] = [...render[bloco.eixo_y], chalk.grey("█")];
         break;
       case "npc":
         render[bloco.eixo_y] = [
@@ -50,16 +47,16 @@ const handleBlocos = (blocos, mapa) => {
           chalk.black.bgRgb(256, 256, 256)("◨"),
         ];
         break;
-      case "character":
-        render[bloco.eixo_y] = [
-          ...render[bloco.eixo_y],
-          chalk.yellow.bgRgb(256, 256, 256)("●"),
-        ];
-        break;
       default:
         render[bloco.eixo_y] = [...render[bloco.eixo_y], "█"];
     }
   });
+
+  render[personagem.eixo_y][personagem.eixo_x] = chalk.yellow.bgRgb(
+    256,
+    256,
+    256
+  )("●");
 
   return render;
 };
@@ -93,7 +90,28 @@ const optionQuestion = [
 ];
 
 const validadeAction = (vertical, horizontal, render) => {
-  if (render[vertical][horizontal] !== chalk.bgRgb(256, 256, 256)(" ")) {
+  if (render[vertical][horizontal] === chalk.gray("█")) {
+    console.log("Você não pode ir nessa direção");
+    return false;
+  }
+
+  if (render[vertical][horizontal] === chalk.grey("█")) {
+    console.log("trap");
+    return false;
+  }
+
+  if (render[vertical][horizontal] === chalk.rgb(256, 256, 256).inverse("⍝")) {
+    console.log("Morador da cidade de Bruvic!");
+    return false;
+  }
+
+  if (render[vertical][horizontal] === chalk.white.bgRgb(75, 56, 33)("∘")) {
+    console.log("Porta fechada");
+    return false;
+  }
+
+  if (render[vertical][horizontal] === chalk.black.bgRgb(256, 256, 256)("◨")) {
+    console.log("Bau trancado");
     return false;
   }
 
@@ -105,6 +123,7 @@ const validadeAction = (vertical, horizontal, render) => {
 };
 
 const handleInput = (value, render, personagem) => {
+  cleanScreen();
   var horizontal = personagem.eixo_x;
   var vertical = personagem.eixo_y;
 
@@ -118,8 +137,6 @@ const handleInput = (value, render, personagem) => {
           256
         )("●");
         personagem.eixo_y = personagem.eixo_y - 1;
-      } else {
-        console.log("Você não pode ir nessa direção");
       }
       break;
     case "s":
@@ -131,8 +148,6 @@ const handleInput = (value, render, personagem) => {
           256
         )("●");
         personagem.eixo_y = personagem.eixo_y + 1;
-      } else {
-        console.log("Você não pode ir nessa direção");
       }
       break;
     case "a":
@@ -144,8 +159,6 @@ const handleInput = (value, render, personagem) => {
           256
         )("●");
         personagem.eixo_x = personagem.eixo_x - 1;
-      } else {
-        console.log("Você não pode ir nessa direção");
       }
       break;
     case "d":
@@ -157,9 +170,9 @@ const handleInput = (value, render, personagem) => {
           256
         )("●");
         personagem.eixo_x = personagem.eixo_x + 1;
-      } else {
-        console.log("Você não pode ir nessa direção");
       }
+      break;
+    case "2":
       break;
     default:
       console.log("Digite para se mover ou para sair!");
@@ -179,7 +192,7 @@ const getOption = async ({ render, personagem }) => {
 
 const navigation = async (personagem) => {
   var { blocos, mapa } = await loadMapa(personagem.mapa);
-  var render = handleBlocos(blocos, mapa);
+  var render = handleBlocos(blocos, mapa, personagem);
 
   var pressed = "";
 
@@ -188,12 +201,13 @@ const navigation = async (personagem) => {
     personagem: personagem,
   };
 
-  while (pressed !== 2) {
-    cleanScreen();
+  while (pressed !== "2") {
     renderMapa(options.render);
     buildNavigationOptions();
     var { pressed, options } = await getOption(options);
   }
+
+  return options.personagem;
 };
 
 module.exports = navigation;

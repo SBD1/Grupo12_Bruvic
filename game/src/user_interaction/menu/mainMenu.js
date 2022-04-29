@@ -44,36 +44,54 @@ const getOption = () => {
 const handleInput = async (inp) => {
   if (inp == 1) {
     const newPersonagem = await createNewCharacter();
-    const personagemWithHabilidade = await addHabilidadeToPersonagem(
-      newPersonagem
-    );
-    console.log(personagemWithHabilidade);
+    // const personagemWithHabilidade = await addHabilidadeToPersonagem(
+    //   newPersonagem
+    // );
     const personagemLocalizacao =
       await PersonagensManager.getPersonagemLocalizacao(newPersonagem);
-    console.log("AAAA");
-    console.log(personagemLocalizacao);
 
+    console.log("");
+    console.log("");
     console.log("LÁ VAMOS NÓS GRANDE AVENTUREIRO");
-    console.log("aqui explicação da história");
+    console.log("");
+    console.log(
+      "Bruvic é uma cidade portuária: é possível encontrar grandes portos, navios de todo o canto do mundo e as mais diversas mercadorias de todo o continente. Em sua maioria, os cenários são compostos por grandes construções de madeira embasadas em estruturas de pier, que por sua vez também são constituídos de madeira. Apesar do cenário que remete bastante a portos piratas, a cidade apresenta pouca ou nenhuma hostilidade para com visitantes."
+    );
+    console.log("");
+    console.log(
+      "Pela cidade não possuir estratificação e uma notável neutralidade, em Bely-Krugg isso é uma característica ainda mais rara do que ser uma cidade quente, os povos do continente se reúnem anualmente para celebrar um breve momento de paz política, militar e ainda realizar confraternizações religiosas. Tal evento é conhecido como a Procissão. "
+    );
+    console.log("");
+    console.log(
+      "Você é mais um habitante de Bely-Krugg que se dirigiu a Bruvic para participar da Procissão. E tudo estava ocorrendo bem, até que..."
+    );
+    console.log("");
+    console.log("");
 
-    const personagem = {
-      mapa: 1,
-      eixo_y: 6,
-      eixo_x: 0,
-    };
+    const location = await navigation(personagemLocalizacao);
 
-    navigation(personagem);
+    console.log("Obrigado por jogar!");
+    await PersonagensManager.updatePersonagemLocalizacao(location);
+    exit(0);
   }
 
   if (inp == 2) {
-    loadCharacter();
+    const newPersonagem = await loadCharacter();
+    const personagemLocalizacao =
+      await PersonagensManager.getPersonagemLocalizacao(newPersonagem);
+
+    const location = await navigation(personagemLocalizacao);
+
+    console.log("Obrigado por jogar!");
+    await PersonagensManager.updatePersonagemLocalizacao(location);
+    exit(0);
   }
 
   if (inp == 3) {
     repeatablePrints();
     console.log("Obrigado por jogar!");
     logTab();
-    exit(1);
+    exit(0);
   }
 };
 
