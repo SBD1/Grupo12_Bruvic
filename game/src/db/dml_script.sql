@@ -41,7 +41,8 @@ INSERT INTO public.bloco (
 	VALUES (1, 3, 1, 'cordilheira'), 
     (8, 5, 2, 'floresta'), 
     (10, 4, 3, 'praia'),
-	(7, 2, 1, 'cordilheira');
+	(7, 2, 1, 'cordilheira'),
+	(1, 1, 1, 'spawn');
 
 -- Insert npc
 

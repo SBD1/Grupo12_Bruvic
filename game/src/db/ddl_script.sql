@@ -89,12 +89,12 @@ CREATE TABLE IF NOT EXISTS Personagem (
 );
 
 CREATE TABLE IF NOT EXISTS PersonagemLocalizacao (
-    personagem INTEGER PRIMARY KEY REFERENCES Personagem (id) ON DELETE CASCADE
-    eixo_x INTEGER,
-    eixo_y INTEGER,
-    mapa INTEGER,
+    personagem INTEGER REFERENCES Personagem (id),
+    eixo_x INTEGER DEFAULT 1,
+    eixo_y INTEGER DEFAULT 1,
+    mapa INTEGER DEFAULT 1,
     FOREIGN KEY (eixo_x, eixo_y, mapa) REFERENCES Bloco (eixo_x, eixo_y, mapa)
-)
+);
 
 CREATE TABLE IF NOT EXISTS Humano (
     personagem INTEGER PRIMARY KEY REFERENCES Personagem (id) ON DELETE CASCADE,
@@ -372,7 +372,7 @@ FOR EACH ROW EXECUTE PROCEDURE cria_magia();
 CREATE OR REPLACE FUNCTION cria_personagem() RETURNS trigger AS $cria_personagem$
 BEGIN
     INSERT INTO public.definicaopersonagem(personagem) VALUES (new.id);
-    INSERT INTO public.PersonagemLocalizacao(personagem, eixo_x, eixo_y, mapa) VALUES (new.id, 0, 0, 0);
+    INSERT INTO public.PersonagemLocalizacao(personagem) VALUES (new.id);
     RAISE NOTICE 'Personagem criado com sucesso!';
     RETURN NEW;
 END;
