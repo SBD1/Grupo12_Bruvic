@@ -2,7 +2,7 @@ const clear = require("clear");
 const { exit } = require("process");
 const inquirer = require("inquirer");
 const createNewCharacter = require("../personagem/createCharacter");
-const renderMapa = require("../mapa/renderMapa");
+const navigation = require("../mapa/renderMapa");
 
 const optionQuestionId = "mainMenuOpt";
 
@@ -66,7 +66,7 @@ const handleInput = (inp) => {
     cleanScreen();
     console.log("LÁ VAMOS NÓS GRANDE AVENTUREIRO");
     console.log("aqui explicação da história");
-    renderMapa(1);
+    navigation();
   }
 
   if (inp == 2) {
