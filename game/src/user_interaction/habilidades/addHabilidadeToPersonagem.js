@@ -4,10 +4,13 @@ const inquirer = require('inquirer');
 
 const addHabilidadeToPersonagem = async (personagem) => {
     buildGameTitle(); 
-    const allHabilidades = await getHabilidadesByClasse(personagem.classe); 
-    console.log(allHabilidades);
-    const habilidadeSelected = await buildHabilidadeSelector(allHabilidades);
-    await saveHabilidadeToPersonagem(habilidadeSelected, personagem); 
+
+    if (personagem.classe != 'Guerreiro') {
+        const allHabilidades = await getHabilidadesByClasse(personagem.classe); 
+        const habilidadeSelected = await buildHabilidadeSelector(allHabilidades);
+        await saveHabilidadeToPersonagem(habilidadeSelected, personagem); 
+    }
+    
     return personagem;
 }
 
@@ -61,7 +64,7 @@ const saveHabilidadeToPersonagem = async (habilidade, personagem) => {
         await HabilidadeManager.saveToClerigoCura(habilidade, personagem); 
     }
     if(habilidade.tipo === 'Truque'){
-        await HabilidadeManager.saveToMagoMagia(habilidade, personagem); 
+        await HabilidadeManager.saveToClerigoTruque(habilidade, personagem); 
     }
     personagem.setNewHabilidade(habilidade); 
 }

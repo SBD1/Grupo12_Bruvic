@@ -6,6 +6,7 @@ const loadCharacter = require("../personagem/loadCharacter");
 const addHabilidadeToPersonagem = require("../habilidades/addHabilidadeToPersonagem");
 const { buildGameTitle, cleanScreen } = require("../common");
 const navigation = require("../mapa/renderMapa");
+const PersonagensManager = require("../../models/personagens/personagens_manager");
 
 const optionQuestionId = "mainMenuOpt";
 
@@ -42,19 +43,25 @@ const getOption = () => {
 
 const handleInput = async (inp) => {
   if (inp == 1) {
-    // const newPersonagem = await createNewCharacter();
-    // const personagemWithHabilidade = await addHabilidadeToPersonagem(
-    //   newPersonagem
-    // );
+    const newPersonagem = await createNewCharacter();
+    const personagemWithHabilidade = await addHabilidadeToPersonagem(
+      newPersonagem
+    );
+    console.log(personagemWithHabilidade);
+    const personagemLocalizacao =
+      await PersonagensManager.getPersonagemLocalizacao(newPersonagem);
+    console.log("AAAA");
+    console.log(personagemLocalizacao);
+
+    console.log("LÁ VAMOS NÓS GRANDE AVENTUREIRO");
+    console.log("aqui explicação da história");
 
     const personagem = {
       mapa: 1,
       eixo_y: 6,
       eixo_x: 0,
     };
-    cleanScreen();
-    console.log("LÁ VAMOS NÓS GRANDE AVENTUREIRO");
-    console.log("aqui explicação da história");
+
     navigation(personagem);
   }
 

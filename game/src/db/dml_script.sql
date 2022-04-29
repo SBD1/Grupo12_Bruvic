@@ -691,47 +691,6 @@ INSERT INTO public.personagem(
     (5, 21, 0, 1, 'cordeia', 12, 16, 20, 11, 15, 12, 13, 700),
     (6, 23, 0, 1, 'thomas', 18, 15, 14, 13, 13, 13, 11, 700);
 
-
--- Inserção de anoes
-INSERT INTO public.anao(
-	personagem, bonus_forca, bonus_constituicao)
-	VALUES (1, 4, 2),
-    (6, 1, 5);
-
--- Inserção de humanos
-INSERT INTO public.humano(
-	personagem, bonus_destreza, bonus_forca, bonus_constituicao, bonus_carisma, bonus_sabedoria, bonus_inteligencia)
-	VALUES (3, 1, 1, 2, 0, 1, 1);
-
--- Inserção de draconatos
-INSERT INTO public.draconato(
-	personagem, bonus_carisma, bonus_inteligencia)
-	VALUES (2, 3, 3),
-    (5, 2, 4);
-
--- Inserção de meio elfos
-INSERT INTO public.meioelfo(
-	personagem, bonus_sabedoria, bonus_destreza)
-	VALUES (4, 0, 6);
-
-
--- Inserção de guerreiros
-INSERT INTO public.guerreiro(
-	personagem, bonus_classe_armadura, bonus_ataque)
-	VALUES (3, 5, 3),
-    (5, 4, 4);
-
--- Inserção de magos
-INSERT INTO public.mago(
-	personagem)
-	VALUES (2), (6);
-
--- Inserção de clérigos
-INSERT INTO public.clerigo(
-	personagem)
-	VALUES (1), (4);
-
-
 -- Inserção na definição de personagens
 INSERT INTO public.definicaopersonagem(
 	personagem, raca, classe)
@@ -741,7 +700,6 @@ INSERT INTO public.definicaopersonagem(
     (4, 'MeioElfo', 'Clerigo'),
     (5, 'Draconato', 'Guerreiro'),
     (6, 'Anao', 'Mago');
-
 
 -- Insert items
 

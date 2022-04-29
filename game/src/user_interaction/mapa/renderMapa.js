@@ -15,8 +15,6 @@ const renderMapa = (render) => {
 const handleBlocos = (blocos, mapa) => {
   var render = Array(mapa.altura + 1).fill(Array());
 
-  console.log(render);
-
   blocos.forEach((bloco) => {
     switch (bloco.tipo) {
       case "wall":
@@ -113,7 +111,6 @@ const handleInput = (value, render, personagem) => {
   switch (value) {
     case "w":
       if (validadeAction(vertical - 1, horizontal, render)) {
-        console.log(render[vertical]);
         render[vertical][horizontal] = chalk.bgRgb(256, 256, 256)(" ");
         render[vertical - 1][horizontal] = chalk.yellow.bgRgb(
           256,
@@ -127,7 +124,6 @@ const handleInput = (value, render, personagem) => {
       break;
     case "s":
       if (validadeAction(vertical + 1, horizontal, render)) {
-        console.log(render[vertical]);
         render[vertical][horizontal] = chalk.bgRgb(256, 256, 256)(" ");
         render[vertical + 1][horizontal] = chalk.yellow.bgRgb(
           256,
@@ -141,7 +137,6 @@ const handleInput = (value, render, personagem) => {
       break;
     case "a":
       if (validadeAction(vertical, horizontal - 1, render)) {
-        console.log(render[vertical]);
         render[vertical][horizontal] = chalk.bgRgb(256, 256, 256)(" ");
         render[vertical][horizontal - 1] = chalk.yellow.bgRgb(
           256,
@@ -155,7 +150,6 @@ const handleInput = (value, render, personagem) => {
       break;
     case "d":
       if (validadeAction(vertical, horizontal + 1, render)) {
-        console.log(render[vertical]);
         render[vertical][horizontal] = chalk.bgRgb(256, 256, 256)(" ");
         render[vertical][horizontal + 1] = chalk.yellow.bgRgb(
           256,
