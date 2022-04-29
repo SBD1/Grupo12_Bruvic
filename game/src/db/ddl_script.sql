@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS Mapa (
 CREATE TABLE IF NOT EXISTS Bloco (
     eixo_x INTEGER NOT NULL,
     eixo_y INTEGER NOT NULL,
-    mapa INTEGER REFERENCES Mapa (id),
+    mapa INTEGER REFERENCES Mapa (id) ON DELETE CASCADE,
     tipo VARCHAR NOT NULL,
     spawn_item BOOLEAN,
     PRIMARY KEY (eixo_x, eixo_y, mapa)
@@ -48,8 +48,7 @@ CREATE TABLE IF NOT EXISTS Armadilha (
     eixo_x INTEGER NOT NULL,
     eixo_y INTEGER NOT NULL,
     mapa INTEGER NOT NULL,
-    FOREIGN KEY (eixo_x, eixo_y, mapa) REFERENCES Bloco (eixo_x, eixo_y, mapa),
-    PRIMARY KEY (eixo_x, eixo_y, mapa)
+    FOREIGN KEY (eixo_x, eixo_y, mapa) REFERENCES Bloco (eixo_x, eixo_y, mapa)
 );
 
 CREATE TABLE IF NOT EXISTS NPC (
@@ -264,10 +263,10 @@ END;
 $cria_habilidade$ LANGUAGE plpgsql;
 
 CREATE TRIGGER cria_habilidade_trigger
-AFTER INSERT ON Habilidade 
+AFTER INSERT ON Habilidade
 FOR EACH ROW EXECUTE PROCEDURE cria_habilidade();
 
--- ======================================= CHECK CURA  ===========================================================================================
+-- -- ======================================= CHECK CURA  ===========================================================================================
 
 CREATE OR REPLACE FUNCTION cria_cura() RETURNS trigger AS $cria_cura$
 DECLARE 
@@ -300,7 +299,7 @@ BEFORE INSERT ON Cura
 FOR EACH ROW EXECUTE PROCEDURE cria_cura();
 
 
--- ======================================= CHECK TRUQUE  ===========================================================================================
+-- -- ======================================= CHECK TRUQUE  ===========================================================================================
 
 CREATE OR REPLACE FUNCTION cria_truque() RETURNS trigger AS $cria_truque$
 DECLARE 
@@ -332,7 +331,7 @@ CREATE TRIGGER cria_truque_trigger
 BEFORE INSERT ON Truque
 FOR EACH ROW EXECUTE PROCEDURE cria_truque();
 
--- ======================================= CHECK MAGIA  ===========================================================================================
+-- -- ======================================= CHECK MAGIA  ===========================================================================================
 
 
 CREATE OR REPLACE FUNCTION cria_magia() RETURNS trigger AS $cria_magia$
