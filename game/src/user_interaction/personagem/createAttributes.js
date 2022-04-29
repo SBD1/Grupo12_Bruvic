@@ -1,5 +1,6 @@
 const clear = require('clear');
 const inquirer = require('inquirer');
+const PersonagensManager = require('../../models/personagens/personagens_manager');
 
 const validation = async (value) => {
     var newVal = value.trim();
@@ -331,6 +332,8 @@ const createAttributes = async (charName, charClass, charRace) => {
     };
 
     await inquirer.prompt(contBuffQuestion);
+    await PersonagensManager.savePersonagem(values);
+    console.log('Tapoooha');
 };
 
 module.exports = createAttributes;
