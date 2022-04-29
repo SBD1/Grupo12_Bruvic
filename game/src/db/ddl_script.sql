@@ -749,37 +749,38 @@ FOR EACH ROW EXECUTE PROCEDURE cria_draconato();
 -- Trigger DefinicaoPersonagem
 
 CREATE OR REPLACE FUNCTION on_definicao_personagem() RETURNS trigger AS $on_definicao_personagem$
+
 BEGIN
- if new.raca == 'Anao':
+ IF new.raca = 'Anao' THEN
     INSERT INTO Anao(personagem) VALUES (new.personagem);
  END IF;
  
- if new.raca == 'Humano':
+ IF new.raca = 'Humano' THEN
     INSERT INTO Humano(personagem) VALUES (new.personagem);
  END IF;
 
- if new.raca == 'MeioElfo':
+ IF new.raca = 'MeioElfo' THEN
     INSERT INTO MeioElfo(personagem) VALUES (new.personagem);
  END IF;
 
- if new.raca == 'Draconato':
+ IF new.raca = 'Draconato' THEN
     INSERT INTO Draconato(personagem) VALUES (new.personagem);
  END IF;
 
- if new.classe == 'Mago':
+ IF new.classe = 'Mago' THEN
     INSERT INTO Mago(personagem) VALUES (new.personagem);
  END IF;
 
- if new.classe == 'Clerigo':
+ IF new.classe = 'Clerigo' THEN
     INSERT INTO Clerigo(personagem) VALUES (new.personagem);
  END IF;
 
- if new.classe == 'Guerreiro':
+ IF new.classe = 'Guerreiro' THEN
     INSERT INTO Guerreiro(personagem) VALUES (new.personagem);
  END IF;
  RETURN NULL; 
 END;
-$cria_draconato$ LANGUAGE plpgsql;
+$on_definicao_personagem$ LANGUAGE plpgsql;
 
 -- DROP TRIGGER on_definicao_personagem on DefinicaoPersonagem;
 CREATE TRIGGER on_definicao_personagem
