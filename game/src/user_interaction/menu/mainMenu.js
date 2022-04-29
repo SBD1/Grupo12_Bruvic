@@ -2,6 +2,9 @@ const clear = require('clear');
 const { exit } = require('process');
 const inquirer = require('inquirer');
 const createNewCharacter = require('../personagem/createCharacter');
+const loadCharacter = require('../personagem/loadCharacter');
+const { buildGameTitle } = require('../common'); 
+
 
 const optionQuestionId = 'mainMenuOpt';
 
@@ -21,18 +24,6 @@ const optionQuestion = [
 const cleanScreen = () => {
     clear();
     console.log();
-};
-
-const buildGameTitle = () => {
-    console.log("▀█████████▄     ▄████████ ███    █▄   ▄█    █▄   ▄█   ▄████████");
-    console.log("  ███    ███   ███    ███ ███    ███ ███    ███ ███  ███    ███");
-    console.log("  ███    ███   ███    ███ ███    ███ ███    ███ ███▌ ███    █▀");
-    console.log(" ▄███▄▄▄██▀   ▄███▄▄▄▄██▀ ███    ███ ███    ███ ███▌ ███ ");
-    console.log("▀▀███▀▀▀██▄  ▀▀███▀▀▀▀▀   ███    ███ ███    ███ ███▌ ███ ");
-    console.log("  ███    ██▄ ▀███████████ ███    ███ ███    ███ ███  ███    █▄");
-    console.log("  ███    ███   ███    ███ ███    ███ ███    ███ ███  ███    ███");
-    console.log("▄█████████▀    ███    ███ ████████▀   ▀██████▀  █▀   ████████▀")
-    console.log("               ███    ███");                                   
 };
 
 const logTab = (line=1) => {
@@ -58,8 +49,7 @@ const handleInput = (inp) => {
     }
 
     if (inp == 2) {
-        console.log("2");
-        // chooseCharacter();
+        loadCharacter();
     }
 
     if (inp == 3) {

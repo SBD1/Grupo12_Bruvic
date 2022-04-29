@@ -1,6 +1,6 @@
-const clear = require('clear');
 const inquirer = require('inquirer');
 const createAttributes = require('./createAttributes');
+const { buildGameTitle } = require('../common'); 
 
 var characterName;
 var characterRace;
@@ -48,23 +48,7 @@ const classQuestion = [
     }
 ];
 
-const buildTitle = () => {
-    clear();
-    console.log();
-    console.log();
-    console.log("▀█████████▄     ▄████████ ███    █▄   ▄█    █▄   ▄█   ▄████████");
-    console.log("  ███    ███   ███    ███ ███    ███ ███    ███ ███  ███    ███");
-    console.log("  ███    ███   ███    ███ ███    ███ ███    ███ ███▌ ███    █▀");
-    console.log(" ▄███▄▄▄██▀   ▄███▄▄▄▄██▀ ███    ███ ███    ███ ███▌ ███ ");
-    console.log("▀▀███▀▀▀██▄  ▀▀███▀▀▀▀▀   ███    ███ ███    ███ ███▌ ███ ");
-    console.log("  ███    ██▄ ▀███████████ ███    ███ ███    ███ ███  ███    █▄");
-    console.log("  ███    ███   ███    ███ ███    ███ ███    ███ ███  ███    ███");
-    console.log("▄█████████▀    ███    ███ ████████▀   ▀██████▀  █▀   ████████▀")
-    console.log("               ███    ███");   
-    console.log();
-    console.log();
-    console.log();
-};
+
 
 const capitalize = (str) => (str.charAt(0).toUpperCase() + str.slice(1));
 
@@ -123,7 +107,7 @@ const getCharClass = async () => {
 };
 
 const createNewCharacter = async () => {
-    buildTitle();
+    buildGameTitle();
     console.log("----- Criação de personagem -----");
     console.log();
     await getCharacterName();

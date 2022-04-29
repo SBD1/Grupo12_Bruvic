@@ -1,6 +1,6 @@
-const clear = require('clear');
 const inquirer = require('inquirer');
 const PersonagensManager = require('../../models/personagens/personagens_manager');
+const { buildGameTitle } = require('../common'); 
 
 const validation = async (value) => {
     var newVal = value.trim();
@@ -96,23 +96,7 @@ const max = 21;
 const min = 10;
 const getRandomAtr = () => (Math.floor(Math.random() * (max - min) + min));
 
-const buildTitle = () => {
-    clear();
-    console.log();
-    console.log();
-    console.log("▀█████████▄     ▄████████ ███    █▄   ▄█    █▄   ▄█   ▄████████");
-    console.log("  ███    ███   ███    ███ ███    ███ ███    ███ ███  ███    ███");
-    console.log("  ███    ███   ███    ███ ███    ███ ███    ███ ███▌ ███    █▀");
-    console.log(" ▄███▄▄▄██▀   ▄███▄▄▄▄██▀ ███    ███ ███    ███ ███▌ ███ ");
-    console.log("▀▀███▀▀▀██▄  ▀▀███▀▀▀▀▀   ███    ███ ███    ███ ███▌ ███ ");
-    console.log("  ███    ██▄ ▀███████████ ███    ███ ███    ███ ███  ███    █▄");
-    console.log("  ███    ███   ███    ███ ███    ███ ███    ███ ███  ███    ███");
-    console.log("▄█████████▀    ███    ███ ████████▀   ▀██████▀  █▀   ████████▀")
-    console.log("               ███    ███");   
-    console.log();
-    console.log();
-    console.log();
-};
+
 
 const handleDex = async (dexval) => {
     const answer = await inquirer.prompt(dexQuestion);
@@ -276,7 +260,7 @@ const createAttributes = async (charName, charClass, charRace) => {
         moneyAmount = 250;
     } 
 
-    buildTitle();
+    buildGameTitle();
     console.log();
     console.log("---------------------------------");
     console.log('O nome do seu personagem é:        ' + characterName);
@@ -316,7 +300,7 @@ const createAttributes = async (charName, charClass, charRace) => {
     console.log("----------------------------------------------");
     console.log();
 
-    values = {
+    const values = {
         vida: charLife,
         experiencia: 0,
         nivel: 1,
@@ -329,11 +313,13 @@ const createAttributes = async (charName, charClass, charRace) => {
         inteligencia: intValue,
         classe_de_armadura: armorClass,
         montante: moneyAmount,
+        raca: characterRace, 
+        classe: characterClass,
     };
 
     await inquirer.prompt(contBuffQuestion);
     await PersonagensManager.savePersonagem(values);
-    console.log('Tapoooha');
+   // chamar set de habilidades
 };
 
 module.exports = createAttributes;
