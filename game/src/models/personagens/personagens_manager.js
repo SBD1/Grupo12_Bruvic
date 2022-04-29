@@ -271,7 +271,7 @@ module.exports = class PersonagensManager {
 
   static async updatePersonagemLocalizacao(personagem) {
     const client = await db.connect();
-    const queryText = `UPDATE PersonagemLocalizacao SET eixo_y = ${personagem.eixo_y}, eixo_x = ${personagem.eixo_y} WHERE personagem = ${personagem.personagem};`;
+    const queryText = `UPDATE PersonagemLocalizacao SET eixo_y = ${personagem.eixo_y}, eixo_x = ${personagem.eixo_x} WHERE personagem = ${personagem.personagem};`;
     await client.query(queryText);
     client.release();
   }
