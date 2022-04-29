@@ -1,5 +1,6 @@
 const BlocosManager = require("../../models/bloco/blocos_manager");
 const MapasManager = require("../../models/mapa/mapas_manager");
+const { cleanScreen } = require("../common");
 const inquirer = require("inquirer");
 const chalk = require("chalk");
 
@@ -11,8 +12,8 @@ const renderMapa = (render) => {
   console.log("");
 };
 
-const handleBlocos = (blocos, mapa) => {
-  var render = Array(mapa.altura + 1).fill(Array(mapa.largura + 1));
+const handleBlocos = (blocos, mapa, personagem) => {
+  var render = Array(mapa.altura + 1).fill(Array());
 
   blocos.forEach((bloco) => {
     switch (bloco.tipo) {
@@ -26,10 +27,7 @@ const handleBlocos = (blocos, mapa) => {
         ];
         break;
       case "trap":
-        render[bloco.eixo_y] = [
-          ...render[bloco.eixo_y],
-          chalk.bgRgb(256, 256, 256)(" "),
-        ];
+        render[bloco.eixo_y] = [...render[bloco.eixo_y], chalk.grey("█")];
         break;
       case "npc":
         render[bloco.eixo_y] = [
@@ -49,18 +47,18 @@ const handleBlocos = (blocos, mapa) => {
           chalk.black.bgRgb(256, 256, 256)("◨"),
         ];
         break;
-      case "character":
-        render[bloco.eixo_y] = [
-          ...render[bloco.eixo_y],
-          chalk.yellow.bgRgb(256, 256, 256)("●"),
-        ];
-        break;
       default:
         render[bloco.eixo_y] = [...render[bloco.eixo_y], "█"];
     }
   });
 
-  renderMapa(render);
+  render[personagem.eixo_y][personagem.eixo_x] = chalk.yellow.bgRgb(
+    256,
+    256,
+    256
+  )("●");
+
+  return render;
 };
 
 const loadMapa = async (id) => {
@@ -73,32 +71,143 @@ const loadMapa = async (id) => {
 };
 
 const buildNavigationOptions = () => {
-  console.log("W - Cima");
+  console.log("w - Cima");
+  console.log("a - Esquerda");
+  console.log("s - Baixo");
+  console.log("d - Direita");
   console.log(" ");
   console.log("2) Exit");
 };
 
-const handleInput = (value) => {
-  console.log(value);
+const optionQuestionId = "mapaOpt";
+
+const optionQuestion = [
+  {
+    name: optionQuestionId,
+    type: "input",
+    message: "Selecione a sua opção: ",
+  },
+];
+
+const validadeAction = (vertical, horizontal, render) => {
+  if (render[vertical][horizontal] === chalk.gray("█")) {
+    console.log("Você não pode ir nessa direção");
+    return false;
+  }
+
+  if (render[vertical][horizontal] === chalk.grey("█")) {
+    console.log("trap");
+    return false;
+  }
+
+  if (render[vertical][horizontal] === chalk.rgb(256, 256, 256).inverse("⍝")) {
+    console.log("Morador da cidade de Bruvic!");
+    return false;
+  }
+
+  if (render[vertical][horizontal] === chalk.white.bgRgb(75, 56, 33)("∘")) {
+    console.log("Porta fechada");
+    return false;
+  }
+
+  if (render[vertical][horizontal] === chalk.black.bgRgb(256, 256, 256)("◨")) {
+    console.log("Bau trancado");
+    return false;
+  }
+
+  if (vertical < 0 || vertical > 48 || horizontal < 0 || horizontal > 48) {
+    return false;
+  }
+
+  return true;
 };
 
-const getOption = () => {
-  inquirer.prompt(optionQuestion).then((answer) => {
-    const pressed = parseInt(answer[optionQuestionId]);
-    handleInput(pressed);
-    return pressed;
-  });
+const handleInput = (value, render, personagem) => {
+  cleanScreen();
+  var horizontal = personagem.eixo_x;
+  var vertical = personagem.eixo_y;
+
+  switch (value) {
+    case "w":
+      if (validadeAction(vertical - 1, horizontal, render)) {
+        render[vertical][horizontal] = chalk.bgRgb(256, 256, 256)(" ");
+        render[vertical - 1][horizontal] = chalk.yellow.bgRgb(
+          256,
+          256,
+          256
+        )("●");
+        personagem.eixo_y = personagem.eixo_y - 1;
+      }
+      break;
+    case "s":
+      if (validadeAction(vertical + 1, horizontal, render)) {
+        render[vertical][horizontal] = chalk.bgRgb(256, 256, 256)(" ");
+        render[vertical + 1][horizontal] = chalk.yellow.bgRgb(
+          256,
+          256,
+          256
+        )("●");
+        personagem.eixo_y = personagem.eixo_y + 1;
+      }
+      break;
+    case "a":
+      if (validadeAction(vertical, horizontal - 1, render)) {
+        render[vertical][horizontal] = chalk.bgRgb(256, 256, 256)(" ");
+        render[vertical][horizontal - 1] = chalk.yellow.bgRgb(
+          256,
+          256,
+          256
+        )("●");
+        personagem.eixo_x = personagem.eixo_x - 1;
+      }
+      break;
+    case "d":
+      if (validadeAction(vertical, horizontal + 1, render)) {
+        render[vertical][horizontal] = chalk.bgRgb(256, 256, 256)(" ");
+        render[vertical][horizontal + 1] = chalk.yellow.bgRgb(
+          256,
+          256,
+          256
+        )("●");
+        personagem.eixo_x = personagem.eixo_x + 1;
+      }
+      break;
+    case "2":
+      break;
+    default:
+      console.log("Digite para se mover ou para sair!");
+  }
+
+  return { render, personagem };
 };
 
-const navigation = async () => {
-  const { blocos, mapa } = await loadMapa(1);
+const getOption = async ({ render, personagem }) => {
+  const answer = await inquirer.prompt(optionQuestion);
+
+  const pressed = answer[optionQuestionId];
+  var options = handleInput(pressed, render, personagem);
+
+  return { pressed, options };
+};
+
+const navigation = async (personagem) => {
+  var { blocos, mapa } = await loadMapa(personagem.mapa);
+  var render = handleBlocos(blocos, mapa, personagem);
+
   var pressed = "";
 
-  while (pressed !== 2) {
-    handleBlocos(blocos, mapa);
+  var options = {
+    render: render,
+    personagem: personagem,
+  };
+
+  while (pressed !== "2") {
+    renderMapa(options.render);
     buildNavigationOptions();
-    pressed = getOption();
+    var { pressed, options } = await getOption(options);
   }
+
+  return options.personagem;
 };
 
 module.exports = navigation;

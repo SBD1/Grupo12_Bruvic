@@ -345,7 +345,7 @@ INSERT INTO public.bloco(
 
 INSERT INTO public.bloco(
 	eixo_y, eixo_x, mapa, tipo, spawn_item)
-	VALUES (6, 0, 1, 'character', FALSE),
+	VALUES (6, 0, 1, 'floor', FALSE),
 	(6, 1, 1, 'floor', FALSE),
 	(6, 2, 1, 'floor', FALSE),
 	(6, 3, 1, 'floor', FALSE),

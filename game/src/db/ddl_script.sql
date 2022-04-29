@@ -89,8 +89,8 @@ CREATE TABLE IF NOT EXISTS Personagem (
 
 CREATE TABLE IF NOT EXISTS PersonagemLocalizacao (
     personagem INTEGER REFERENCES Personagem (id),
-    eixo_x INTEGER DEFAULT 1,
-    eixo_y INTEGER DEFAULT 1,
+    eixo_x INTEGER DEFAULT 0,
+    eixo_y INTEGER DEFAULT 6,
     mapa INTEGER DEFAULT 1,
     FOREIGN KEY (eixo_x, eixo_y, mapa) REFERENCES Bloco (eixo_x, eixo_y, mapa)
 );

@@ -1,12 +1,12 @@
-const clear = require('clear');
-const { exit } = require('process');
-const inquirer = require('inquirer');
-const createNewCharacter = require('../personagem/createCharacter');
-const loadCharacter = require('../personagem/loadCharacter');
-const addHabilidadeToPersonagem = require('../habilidades/addHabilidadeToPersonagem'); 
-const { buildGameTitle } = require('../common'); 
+const clear = require("clear");
+const { exit } = require("process");
+const inquirer = require("inquirer");
+const createNewCharacter = require("../personagem/createCharacter");
+const loadCharacter = require("../personagem/loadCharacter");
+const addHabilidadeToPersonagem = require("../habilidades/addHabilidadeToPersonagem");
+const { buildGameTitle, cleanScreen } = require("../common");
 const navigation = require("../mapa/renderMapa");
-const PersonagensManager = require('../../models/personagens/personagens_manager');
+const PersonagensManager = require("../../models/personagens/personagens_manager");
 
 const optionQuestionId = "mainMenuOpt";
 const optionQuestion = [
@@ -34,11 +34,6 @@ const storyQuestion = [
     },
   },
 ];
-
-const cleanScreen = () => {
-  clear();
-  console.log();
-};
 
 const tellStoryGame = async () => {
   cleanScreen();
@@ -85,25 +80,41 @@ const getOption = () => {
 const handleInput = async (inp) => {
   if (inp == 1) {
     const newPersonagem = await createNewCharacter();
-    const personagemWithHabilidade = await addHabilidadeToPersonagem(newPersonagem); 
-    console.log(personagemWithHabilidade);
-    cleanScreen();
-    const personagemLocalizacao = await PersonagensManager.getPersonagemLocalizacao(newPersonagem);
-    console.log(personagemLocalizacao);
-    await tellStoryGame();
+    const personagemWithHabilidade = await addHabilidadeToPersonagem(
+      newPersonagem
+    );
+    const personagemLocalizacao =
+      await PersonagensManager.getPersonagemLocalizacao(personagemWithHabilidade);
 
-    navigation();
+    await tellStoryGame();
+    const location = await navigation(personagemLocalizacao);
+
+    cleanScreen();
+    buildGameTitle();
+    console.log("Obrigado por jogar!");
+    await PersonagensManager.updatePersonagemLocalizacao(location);
+    exit(0);
   }
 
   if (inp == 2) {
-    loadCharacter();
+    const newPersonagem = await loadCharacter();
+    const personagemLocalizacao =
+      await PersonagensManager.getPersonagemLocalizacao(newPersonagem);
+
+    const location = await navigation(personagemLocalizacao);
+
+    cleanScreen();
+    buildGameTitle();
+    console.log("Obrigado por jogar!");
+    await PersonagensManager.updatePersonagemLocalizacao(location);
+    exit(0);
   }
 
   if (inp == 3) {
     repeatablePrints();
     console.log("Obrigado por jogar!");
     logTab();
-    exit(1);
+    exit(0);
   }
 };
 

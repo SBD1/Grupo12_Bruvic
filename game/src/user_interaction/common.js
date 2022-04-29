@@ -1,21 +1,32 @@
-const clear = require('clear');
+const clear = require("clear");
 
 const buildGameTitle = () => {
-    clear();
-    console.log();
-    console.log();
-    console.log("▀█████████▄     ▄████████ ███    █▄   ▄█    █▄   ▄█   ▄████████");
-    console.log("  ███    ███   ███    ███ ███    ███ ███    ███ ███  ███    ███");
-    console.log("  ███    ███   ███    ███ ███    ███ ███    ███ ███▌ ███    █▀");
-    console.log(" ▄███▄▄▄██▀   ▄███▄▄▄▄██▀ ███    ███ ███    ███ ███▌ ███ ");
-    console.log("▀▀███▀▀▀██▄  ▀▀███▀▀▀▀▀   ███    ███ ███    ███ ███▌ ███ ");
-    console.log("  ███    ██▄ ▀███████████ ███    ███ ███    ███ ███  ███    █▄");
-    console.log("  ███    ███   ███    ███ ███    ███ ███    ███ ███  ███    ███");
-    console.log("▄█████████▀    ███    ███ ████████▀   ▀██████▀  █▀   ████████▀")
-    console.log("               ███    ███");   
-    console.log();
-    console.log();
-    console.log();
+  clear();
+  console.log();
+  console.log();
+  console.log(
+    "▀█████████▄     ▄████████ ███    █▄   ▄█    █▄   ▄█   ▄████████"
+  );
+  console.log(
+    "  ███    ███   ███    ███ ███    ███ ███    ███ ███  ███    ███"
+  );
+  console.log("  ███    ███   ███    ███ ███    ███ ███    ███ ███▌ ███    █▀");
+  console.log(" ▄███▄▄▄██▀   ▄███▄▄▄▄██▀ ███    ███ ███    ███ ███▌ ███ ");
+  console.log("▀▀███▀▀▀██▄  ▀▀███▀▀▀▀▀   ███    ███ ███    ███ ███▌ ███ ");
+  console.log("  ███    ██▄ ▀███████████ ███    ███ ███    ███ ███  ███    █▄");
+  console.log(
+    "  ███    ███   ███    ███ ███    ███ ███    ███ ███  ███    ███"
+  );
+  console.log("▄█████████▀    ███    ███ ████████▀   ▀██████▀  █▀   ████████▀");
+  console.log("               ███    ███");
+  console.log();
+  console.log();
+  console.log();
 };
 
-module.exports = {buildGameTitle};
+const cleanScreen = () => {
+  clear();
+  console.log();
+};
+
+module.exports = { buildGameTitle, cleanScreen };
