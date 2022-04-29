@@ -6,7 +6,7 @@ const loadCharacter = require('../personagem/loadCharacter');
 const addHabilidadeToPersonagem = require('../habilidades/addHabilidadeToPersonagem'); 
 const { buildGameTitle } = require('../common'); 
 const navigation = require("../mapa/renderMapa");
-
+const PersonagensManager = require('../../models/personagens/personagens_manager');
 
 const optionQuestionId = "mainMenuOpt";
 
@@ -51,9 +51,11 @@ const handleInput = async (inp) => {
     const newPersonagem = await createNewCharacter();
     const personagemWithHabilidade = await addHabilidadeToPersonagem(newPersonagem); 
     console.log(personagemWithHabilidade);
-    cleanScreen();
+    // cleanScreen();
+    await PersonagensManager.getPersonagemLocalizacao(newPersonagem);
     console.log("LÁ VAMOS NÓS GRANDE AVENTUREIRO");
     console.log("aqui explicação da história");
+
     navigation();
   }
 

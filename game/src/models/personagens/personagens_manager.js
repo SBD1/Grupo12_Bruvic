@@ -1,8 +1,8 @@
 const db = require("../../db/db_config");
 const Personagem = require("./personagem");
-const HabilidadeManager = require('../habilidade/habilidade_manager'); 
-module.exports = class PersonagensManager {
+const HabilidadeManager = require('../habilidade/habilidade_manager');
 
+module.exports = class PersonagensManager {
     static async getAllPersonagem(){
         const client = await db.connect();
         const querySelectByName = `SELECT DISTINCT * from DefinicaoPersonagem def LEFT JOIN Personagem personagem  ON personagem.id = def.personagem;`
@@ -225,5 +225,12 @@ module.exports = class PersonagensManager {
             experiencia, 
             nivel
         );
+    }
+
+    static async getPersonagemLocalizacao(personagem){
+        const client = await db.connect();
+        const queryText = `SELECT * FROM PersonagemLocalizacao WHERE personagem = ${personagem.id};`
+        const personagemLocalizacao = await client.query(queryText);
+        console.log(personagemLocalizacao);
     }
 }
