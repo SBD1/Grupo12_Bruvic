@@ -5,6 +5,7 @@ const MapasManager = require("../../models/mapa/mapas_manager");
 const NPCsManager = require("../../models/npcs/npcs_manager");
 const negocianteMapa = require("../praca_negociantes/praca_negociantes_control");
 const { cleanScreen } = require("../common");
+const PersonagensManager = require("../../models/personagens/personagens_manager");
 
 const renderMapa = (render) => {
   console.log("");
@@ -103,13 +104,15 @@ const validadeAction = async (vertical, horizontal, render, personagem) => {
   }
 
   if (render[vertical][horizontal] === chalk.rgb(256, 256, 256).inverse("⍝")) {
-    const npc = await NPCsManager.getNPCInfoByCoordinates(horizontal, vertical);
-    console.log(`Você encontrou ${npc.nome}:`)
-    console.log(`"${npc.texto}"`);
+    await NPCsManager.getNPCInfoByCoordinates(horizontal, vertical).then(async (npc) =>{
+      console.log(`Você encontrou ${npc.nome}:`)
+      console.log(`"${npc.texto}"`);
+      personagemModel = await PersonagensManager.getById(personagem.personagem);
+      if(npc.tipo == 'negociante'){
+        await negocianteMapa.negocianteFlow(personagemModel, npc);
+      }
+    });
 
-    if(npc.tipo == 'negociante'){
-      await negocianteMapa.negocianteFlow(personagem, npc);
-    }
     return false;
   }
 

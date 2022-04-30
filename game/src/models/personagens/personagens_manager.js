@@ -77,9 +77,9 @@ module.exports = class PersonagensManager {
     return personagens;
   }
 
-  static async getPersonagemAtual(nome = "bolinha") {
+  static async getById(id) {
     const client = await db.connect();
-    const querySelectByName = `SELECT DISTINCT * from DefinicaoPersonagem def LEFT JOIN Personagem personagem  ON personagem.id = def.personagem WHERE personagem.nome = '${nome}';`;
+    const querySelectByName = `SELECT DISTINCT * from DefinicaoPersonagem def LEFT JOIN Personagem personagem  ON personagem.id = def.personagem WHERE personagem.id = ${id};`;
 
     const response = await client.query(querySelectByName);
     const personagem_info = response.rows[0];
