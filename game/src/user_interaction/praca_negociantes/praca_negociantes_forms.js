@@ -26,13 +26,7 @@ async function choiceFromNegocianteList(negociantes) {
 }
 
 
-async function choiceFromItemList(negociante, items) {
-  console.log(
-    chalk.blue(
-        `Essa é a loja de ${negociante.nome}. Ele dá as boas-vindas para todos os pechinchadores.`
-    )
-    );
-
+async function choiceFromItemList(items) {
   const Item = require('../../models/items/item');
   const headers = Item.cabecalhoTabela();
 
