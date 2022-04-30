@@ -651,11 +651,12 @@ INSERT INTO public.bloco(
 -- Insert npc
 
 INSERT INTO public.npc (
-	id, eixo_x, eixo_y, mapa, tipo, vida, nome)
-	VALUES (1, 1, 3, 1, 'negociante', 100, 'Vendedor de armas'), 
-    (2, 8, 5, 1, 'viajante', 100, 'Viajante das Brisas'),  
-    (3, 10, 4, 1, 'negociante', 100, 'Dono de Bar'),
-	(4, 7, 2, 1, 'negociante', 100, 'Vendedor de armaduras');
+	id, eixo_x, eixo_y, mapa, tipo, vida, nome, texto)
+	VALUES (1, 25, 3, 1, 'negociante', 100, 'Vendedor de armas', 'Não explore antes de estar bem armado! Os preços aqui são uma pechincha.'), 
+    (2, 27, 7, 1, 'viajante', 100, 'Viajante das Brisas', 'Eu já velejei para todos lugares que meu barco me levou e assim fiquei rico.'),  
+    (3, 3, 1, 1, 'negociante', 100, 'Dono de Bar', 'Nada de brigas nesse bar! Fique à vontade para olhar o cardápio.'),
+	(4, 33, 5, 1, 'negociante', 100, 'Vendedor de armaduras', 'Bem equipado um aventureiro vai longe, aqui temos qualidade.'),
+	(5, 30, 7, 1, 'viajante', 100, 'Viajante das cavernas', 'Eu adoro procurar tesouros nas cavernas.');
 
 INSERT INTO public.negociante (
 	npc, montante)
