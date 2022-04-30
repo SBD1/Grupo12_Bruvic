@@ -4,6 +4,7 @@ const BlocosManager = require("../../models/bloco/blocos_manager");
 const MapasManager = require("../../models/mapa/mapas_manager");
 const NPCsManager = require("../../models/npcs/npcs_manager");
 const negocianteMapa = require("../praca_negociantes/praca_negociantes_control");
+const personagemControl = require("../personagem_loc/personagem_loc_control");
 const { cleanScreen } = require("../common");
 const PersonagensManager = require("../../models/personagens/personagens_manager");
 
@@ -79,6 +80,7 @@ const buildNavigationOptions = () => {
   console.log("s - Baixo");
   console.log("d - Direita");
   console.log(" ");
+  console.log("1) Ver mochila");
   console.log("2) Exit");
 };
 
@@ -107,7 +109,7 @@ const validadeAction = async (vertical, horizontal, render, personagem) => {
     await NPCsManager.getNPCInfoByCoordinates(horizontal, vertical).then(async (npc) =>{
       console.log(`Você encontrou ${npc.nome}:`)
       console.log(`"${npc.texto}"`);
-      personagemModel = await PersonagensManager.getById(personagem.personagem);
+      const personagemModel = await PersonagensManager.getById(personagem.personagem);
       if(npc.tipo == 'negociante'){
         await negocianteMapa.negocianteFlow(personagemModel, npc);
       }
@@ -182,6 +184,10 @@ const handleInput = async (value, render, personagem) => {
         )("●");
         personagem.eixo_x = personagem.eixo_x + 1;
       }
+      break;
+    case "1":
+      const personagemModel = await PersonagensManager.getById(personagem.personagem);
+      await personagemControl.showPersonagemMochila(personagemModel);
       break;
     case "2":
       break;

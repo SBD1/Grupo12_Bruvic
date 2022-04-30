@@ -12,18 +12,22 @@ async function localizacaoPersonagem(personagem){
             const praca_negociantes_control = require('../praca_negociantes/praca_negociantes_control');
             return praca_negociantes_control.run(personagem);
         } else {
-            const items = await ItemsManager.getAllFromPersonagem(personagem);
-            const capacity = Mochila.showCapacityUse(items, personagem.capacidadeMochila);
-            console.log(chalk.green(capacity));
-            
-            console.log(Item.cabecalhoTabela().contents());
-
-            items.forEach(item => {
-                console.log(item.visualizarEmLinha().contents());
-            });
+            showPersonagemMochila(personagem);
             localizacaoPersonagem(personagem);
         }
 
+    });
+}
+
+async function showPersonagemMochila(personagem){
+    const items = await ItemsManager.getAllFromPersonagem(personagem);
+    const capacity = Mochila.showCapacityUse(items, personagem.capacidadeMochila);
+    console.log(chalk.green(capacity));
+    
+    console.log(Item.cabecalhoTabela().contents());
+
+    items.forEach(item => {
+        console.log(item.visualizarEmLinha().contents());
     });
 }
 
@@ -34,5 +38,6 @@ module.exports = {
             localizacaoPersonagem(personagem);
         });
     },
-    localizacaoPersonagem: localizacaoPersonagem
+    localizacaoPersonagem: localizacaoPersonagem,
+    showPersonagemMochila: showPersonagemMochila
 }
