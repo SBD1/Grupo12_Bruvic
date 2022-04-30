@@ -13,6 +13,7 @@ Repositório para documentação e implementação de projeto para a disciplina 
 - Maurício Serrano
 
 ### História do jogo
+
 Bruvic é uma cidade dentro do continente de Bely-Krugg. Bely-Krugg é um ambiente extenso, na sua maioria composto por planícies nevadas. O continente de Bely-krugg tem três grandes povos: os Filhos de Thok, os Sábios de Kou e os Seguidores de Brum, as três grandes criaturas celestiais que criaram Bely-Krugg. Historicamente, as três entidades nunca tiveram uma relação pacífica ou amistosa, e assim a fizeram as três grandes tribos do continente. 
 
 Bruvic é uma cidade com uma temperatura mais elevada, ambiente raro em Bely-Krugg, e não está no território de nenhuma das três tribos. Assim como a sua natureza política, as orientações culturais e religiosas da cidade são bastante variadas.
@@ -26,3 +27,7 @@ Você é mais um habitante de Bely-Krugg que se dirigiu a Bruvic para participar
 ### Acesso ao jogo Bruvic
 
 Para ter acesso ao jogo desenvolvido, siga os passos deste [tutorial](./game/README.md).
+
+### Apresentação final
+
+O vídeo da apresentação final pode ser encontrado neste repositório com o nome de ```apresentacao_final.mp4```.
