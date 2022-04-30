@@ -1,5 +1,6 @@
 const BlocosManager = require("../../models/bloco/blocos_manager");
 const MapasManager = require("../../models/mapa/mapas_manager");
+const NPCsManager = require("../../models/npcs/npcs_manager");
 const { cleanScreen } = require("../common");
 const inquirer = require("inquirer");
 const chalk = require("chalk");
@@ -89,7 +90,7 @@ const optionQuestion = [
   },
 ];
 
-const validadeAction = (vertical, horizontal, render) => {
+const validadeAction = async (vertical, horizontal, render) => {
   if (render[vertical][horizontal] === chalk.gray("█")) {
     console.log("Você não pode ir nessa direção");
     return false;
@@ -101,7 +102,9 @@ const validadeAction = (vertical, horizontal, render) => {
   }
 
   if (render[vertical][horizontal] === chalk.rgb(256, 256, 256).inverse("⍝")) {
-    console.log("Morador da cidade de Bruvic!");
+    const npc = await NPCsManager.getNPCInfoByCoordinates(horizontal, vertical);
+    console.log(`Você encontrou ${npc.nome}:`)
+    console.log(`"${npc.texto}"`);
     return false;
   }
 
@@ -122,14 +125,14 @@ const validadeAction = (vertical, horizontal, render) => {
   return true;
 };
 
-const handleInput = (value, render, personagem) => {
+const handleInput = async (value, render, personagem) => {
   cleanScreen();
   var horizontal = personagem.eixo_x;
   var vertical = personagem.eixo_y;
 
   switch (value) {
     case "w":
-      if (validadeAction(vertical - 1, horizontal, render)) {
+      if (await validadeAction(vertical - 1, horizontal, render)) {
         render[vertical][horizontal] = chalk.bgRgb(256, 256, 256)(" ");
         render[vertical - 1][horizontal] = chalk.yellow.bgRgb(
           256,
@@ -140,7 +143,7 @@ const handleInput = (value, render, personagem) => {
       }
       break;
     case "s":
-      if (validadeAction(vertical + 1, horizontal, render)) {
+      if (await validadeAction(vertical + 1, horizontal, render)) {
         render[vertical][horizontal] = chalk.bgRgb(256, 256, 256)(" ");
         render[vertical + 1][horizontal] = chalk.yellow.bgRgb(
           256,
@@ -151,7 +154,7 @@ const handleInput = (value, render, personagem) => {
       }
       break;
     case "a":
-      if (validadeAction(vertical, horizontal - 1, render)) {
+      if (await validadeAction(vertical, horizontal - 1, render)) {
         render[vertical][horizontal] = chalk.bgRgb(256, 256, 256)(" ");
         render[vertical][horizontal - 1] = chalk.yellow.bgRgb(
           256,
@@ -162,7 +165,7 @@ const handleInput = (value, render, personagem) => {
       }
       break;
     case "d":
-      if (validadeAction(vertical, horizontal + 1, render)) {
+      if (await validadeAction(vertical, horizontal + 1, render)) {
         render[vertical][horizontal] = chalk.bgRgb(256, 256, 256)(" ");
         render[vertical][horizontal + 1] = chalk.yellow.bgRgb(
           256,
@@ -185,7 +188,7 @@ const getOption = async ({ render, personagem }) => {
   const answer = await inquirer.prompt(optionQuestion);
 
   const pressed = answer[optionQuestionId];
-  var options = handleInput(pressed, render, personagem);
+  var options = await handleInput(pressed, render, personagem);
 
   return { pressed, options };
 };

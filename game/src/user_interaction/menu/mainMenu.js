@@ -71,9 +71,9 @@ const buildMenuOptions = () => {
 };
 
 const getOption = () => {
-  inquirer.prompt(optionQuestion).then((answer) => {
+  inquirer.prompt(optionQuestion).then(async (answer) => {
     const option = parseInt(answer[optionQuestionId]);
-    handleInput(option);
+    await handleInput(option);
   });
 };
 
@@ -125,7 +125,7 @@ const repeatablePrints = () => {
   logTab(3);
 };
 
-const buildMenu = () => {
+const buildMenu = async () => {
   repeatablePrints();
   buildMenuOptions();
   logTab();
