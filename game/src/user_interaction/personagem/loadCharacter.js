@@ -9,42 +9,33 @@ const loadCharacter = async () => {
         console.log('Não há personagens disponíveis para serem escolhidos.'); 
         return; 
     }
-    const personagem = await buildPersonagemSelection(personagens);  
-    return personagem;
+    const personagem = await buildPersonagemSelection(personagens); 
+    return personagem.selecao;
 }
 
+
+const personagemSelectionMenu = async(personagens) => {
+    const Personagem = require('../../models/personagens/personagem');
+    const headers = Personagem.cabecalhoTabela();
+  
+    const personagens_choices = personagens.map((personagem) => { 
+      personagem_name_line = personagem.visualizarEmLinha();
+      return {name: personagem_name_line.contents(), value: personagem, short: personagem.nome}
+    });
+  
+    const questions = [
+    {
+      type: 'list',
+      name: 'selecao',
+      message: `Esses são os personagens presentes no banco de dados\n ${headers.contents()}`,
+      choices: personagens_choices
+    }
+    ];
+    return inquirer.prompt(questions);
+}
     
 const buildPersonagemSelection = async (personagens) => {
-    console.log('Personagens salvos no banco de dados.');
-    console.log();
-    showPersonagemOptions(personagens); 
-    console.log();
-    const option = await getInputPrompt(personagens.length);   
-    const personagemSelected = personagens[option]
-    return personagemSelected; 
-}
-
-const showPersonagemOptions = (personagens) => {
-    personagens.forEach((personagem, i) => {
-        console.log(`${i + 1}) ${personagem.nome} - ${personagem.classe} - ${personagem.raca} - lvl ${personagem.nivel}`);
-    }); 
-}
-
-const getInputPrompt = async (limit) =>{
-    const { personagemOpt } = await inquirer.prompt([
-        {
-            name: 'personagemOpt',
-            type: 'input',
-            message: 'Escolha qual personagem você deseja usar:',
-            validate: async function (value) {
-                const check = parseInt(value);
-                return (isNaN(check) || check<1 || check>limit) ?
-                `A opção precisa ser um número entre 1 e ${limit}` : true;
-            }
-        }
-    ]);   
-
-    return Number(personagemOpt-1); 
+    return await personagemSelectionMenu(personagens);
 }
 
 module.exports = loadCharacter;

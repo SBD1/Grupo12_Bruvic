@@ -64,11 +64,22 @@ const logTab = (line=1) => {
     for (var i=0; i<line; i++) console.log();
 };
 
-const buildMenuOptions = () => {
-  console.log("1) Novo personagem");
-  console.log("2) Carregar personagem salvo");
-  console.log("3) Sair do jogo");
-};
+const NOVO_PERSONAGEM = 'Novo personagem';
+const CARREGAR_PERSONAGEM = 'Carregar personagem salvo'
+const SAIR_DO_JOGO  = 'Sair do jogo';
+
+const startMenuOptions = () => {
+  const questions = [
+      {
+          type: 'list',
+          name: 'selecaoCaminho',
+          message: 'Olá, selecione como prosseguir:',
+          choices: [NOVO_PERSONAGEM, CARREGAR_PERSONAGEM, SAIR_DO_JOGO],
+          default: NOVO_PERSONAGEM
+      }
+    ]
+    return inquirer.prompt(questions);
+}
 
 const getOption = () => {
   inquirer.prompt(optionQuestion).then(async (answer) => {
@@ -78,7 +89,8 @@ const getOption = () => {
 };
 
 const handleInput = async (inp) => {
-  if (inp == 1) {
+  console.log(inp)
+  if (inp == NOVO_PERSONAGEM) {
     const newPersonagem = await createNewCharacter();
     const personagemWithHabilidade = await addHabilidadeToPersonagem(
       newPersonagem
@@ -96,7 +108,7 @@ const handleInput = async (inp) => {
     exit(0);
   }
 
-  if (inp == 2) {
+  if (inp == CARREGAR_PERSONAGEM) {
     const newPersonagem = await loadCharacter();
     const personagemLocalizacao =
       await PersonagensManager.getPersonagemLocalizacao(newPersonagem);
@@ -110,7 +122,7 @@ const handleInput = async (inp) => {
     exit(0);
   }
 
-  if (inp == 3) {
+  if (inp == SAIR_DO_JOGO) {
     repeatablePrints();
     console.log("Obrigado por jogar!");
     logTab();
@@ -127,9 +139,8 @@ const repeatablePrints = () => {
 
 const buildMenu = async () => {
   repeatablePrints();
-  buildMenuOptions();
-  logTab();
-  getOption();
+  const optionSelected = await startMenuOptions();
+  handleInput(optionSelected.selecaoCaminho);
 };
 
 module.exports = { buildMenu };

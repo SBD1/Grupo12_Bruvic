@@ -1,3 +1,7 @@
+const clui = require('clui'),
+clc = require('cli-color'),
+Line = clui.Line;
+
 module.exports = class Personagem  {
     constructor(id, vida, nome, destreza, forca, 
                 constituicao, carisma, sabedoria, inteligencia, montante,
@@ -38,4 +42,23 @@ module.exports = class Personagem  {
         if(isNewHabilidade) this.habilidades.push(habilidade)
        
     }
+
+    static cabecalhoTabela(){
+        return new Line()
+          .padding(2)
+          .column('Nome', 30, [clc.cyan])
+          .column('Classe', 10, [clc.cyan])
+          .column('Raça', 10, [clc.cyan])
+          .fill();
+     }
+ 
+     visualizarEmLinha(){
+ 
+         return new Line()
+         .padding(2)
+         .column(this.nome, 30, [clc.cyan])
+         .column(this.raca, 10, [clc.cyan])
+         .column(this.classe, 10, [clc.cyan])
+         .fill();
+     }
 }
